@@ -1,0 +1,2 @@
+https://www.tutorialspoint.com/how-to-read-a-text-file-with-cplusplus
+http://www.fredosaurus.com/notes-cpp/io/readtextfile.html
