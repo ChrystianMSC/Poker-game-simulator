@@ -2,8 +2,6 @@
 #include <string>
 #include "deck.h"
 
-using namespace std;
-
 #ifndef PLAYER
 #define PLAYER
 
@@ -14,15 +12,15 @@ class Player{
         int points;
 
         Player();
-        void Setname(string name);
+        void Setname(std::string name);
         void Setmoney(int money);
         void Setcardhand(Card card);
-        string Getname();
+        std::string Getname();
         int Getmoney();
         Card Getcardhand(int i);
         
     private:
-        string name;
+        std::string name;
         int money;
 };
 

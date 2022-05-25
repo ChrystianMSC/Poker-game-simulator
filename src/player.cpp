@@ -1,5 +1,6 @@
 #include "player.h"
 
+using namespace std;
 Player::Player()
 {
     this->name = "NULL";

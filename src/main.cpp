@@ -90,9 +90,9 @@ int Ratehand(Card arr[])
             two++;
         }
     }
-    if ((P == 5 || E == 5 || C == 5 || O == 5) && counter == 5)
+    if ((P == 5 || E == 5 || C == 5 || O == 5) && counter > 0)
     {
-        if (vec[8] == 1)
+        if (vec[9] == 1)
         {
             return RSF;
         }
@@ -127,7 +127,7 @@ int Ratehand(Card arr[])
     }
     if (tri == 0 && two == 1)
     {
-        return FH;
+        return OP;
     }
     return 0;
 }
@@ -142,6 +142,7 @@ void bubbleSort(Card arr[], int n)
                 swap(arr[j], arr[j + 1]);
     
 }
+
 void printArray(Card arr[], int size)
 {
     int i;
@@ -264,6 +265,7 @@ int main() {
             for (int k = 0; k < j; k++)
             {
                 inFile >> name;
+
                 for (int x = 0; x < aux; x++)
                 {
                     if (table[x].Getname() == name)
@@ -282,7 +284,9 @@ int main() {
                             card.Setcard(num, suit);
                             table[x].Setcardhand(card);
                         }
+                        table[x].points = Ratehand(table[x].hand);
                         semitable[k] = table[x];
+                        
                     }
                     else
                     {
@@ -297,11 +301,20 @@ int main() {
             /* Set players hands - END */
 
             /* See who wins semitable */
+            cout << endl;
             for (int x = 0; x < j; x++)
             {
-                cout << semitable[x].Getname() << " " << semitable[x].Getmoney() << endl; 
+                cout << semitable[x].Getname() << " " << semitable[x].points << endl;
+                for (int g = 0; g < 5; g++)
+                {
+                    cout << semitable[x].Getcardhand(g).num << semitable[x].Getcardhand(g).suit << " ";
+                    
+                }
+                cout << endl;
+                
             }
-            cout << endl;
+            
+
 
             /* See who wins semitable - END */
 
