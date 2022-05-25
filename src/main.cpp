@@ -4,12 +4,159 @@
 
 using namespace std;
 
+#define RSF 9
+#define SF 8
+#define FK 7
+#define FH 6
+#define F 5
+#define S 4
+#define TK 3
+#define TP 2
+#define OP 1
+
+int Ratehand(Card arr[])
+{
+    int P = 0, E = 0, C = 0, O = 0;
+    int quad = 0;
+    int tri = 0;
+    int two = 0;
+
+    int vec[13];
+
+    int counter = 0;
+
+    for (int i = 0; i < 13; i++)
+    {
+        vec[i] = 0;
+    }
+    
+    for (int i = 0; i < 5; i++)
+    {
+        switch (arr[i].suit)
+        {
+        case 'P':
+            P++;
+            continue;
+        case 'E':
+            E++;
+            continue;
+        case 'C':
+            C++;
+            continue;
+        case 'O':
+            O++;
+            continue;
+        
+        default:
+        continue;
+        }
+    }
+    for (int i = 0; i < 5; i++)
+    {
+        vec[arr[i].num - 1]++;
+    }
+    for (int i = 0; i < 13; i++)
+    {
+        if (vec[i] == 0)
+        {
+            continue;
+        }
+        
+        if (i == 12 && vec[i] == vec[i-1])
+        {
+            counter++;
+        }
+        if (vec[i] == vec[i+1])
+        {
+            counter++;
+        }
+        if (vec[i] != vec[i+1] && vec[i] == vec[i-1])
+        {
+            counter++;
+        }
+    }
+    for (int i = 0; i < 13; i++)
+    {
+        if (vec[i] == 4)
+        {
+            quad++;
+        }
+        if (vec[i] == 3)
+        {
+            tri++;
+        }
+        if (vec[i] == 2)
+        {
+            two++;
+        }
+    }
+    if ((P == 5 || E == 5 || C == 5 || O == 5) && counter == 5)
+    {
+        if (vec[8] == 1)
+        {
+            return RSF;
+        }
+        else
+        {
+            return SF;
+        }
+    }
+    if ((P == 5 || E == 5 || C == 5 || O == 5) && counter == 0)
+    {
+        return F;
+    }
+    if (quad == 1)
+    {
+        return FK;
+    }
+    if (tri == 1 && two == 1)
+    {
+        return FH;
+    }
+    if (!(P == 5 || E == 5 || C == 5 || O == 5) && counter == 5)
+    {
+        return S;
+    }
+    if (tri == 1 && two != 1)
+    {
+        return TK;
+    }
+    if (two == 2)
+    {
+        return TP;
+    }
+    if (tri == 0 && two == 1)
+    {
+        return FH;
+    }
+    return 0;
+}
+
+void bubbleSort(Card arr[], int n)
+{
+    int i, j;
+    for (i = 0; i < n - 1; i++)
+ 
+        for (j = 0; j < n - i - 1; j++)
+            if (arr[j].num > arr[j + 1].num)
+                swap(arr[j], arr[j + 1]);
+    
+}
+void printArray(Card arr[], int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+        cout << arr[i].num << arr[i].suit << " ";
+    cout << endl;
+}
+
 int main() {
 
     int n = 0, di = 0, j = 0, pin = 0, pote = 0, bet = 0;
     string name;
 
     Player table[8];
+    Player semitable[8];
     Player nullplayer;
 
     ifstream inFile;
@@ -27,6 +174,8 @@ int main() {
     
     inFile >> n;
     inFile >> di;
+
+
     for (int i = 0; i < n; i++)
     {
         pote = 0;
@@ -60,16 +209,26 @@ int main() {
                     card.Setcard(num, suit);
                     p.Setcardhand(card);
                 }
+                bubbleSort(p.hand, sizeof(p.hand)/sizeof(p.hand[0]));
+                // printArray(p.hand, sizeof(p.hand)/sizeof(p.hand[0]));
                 table[x] = p;
             }
             /* Set players and hands - END */
 
             /* See who wins */
+
             for (int x = 0; x < j; x++)
             {
-                cout << table[x].Getname() << " " << table[x].Getmoney() << endl; 
+                table[x].points = Ratehand(table[x].hand);
+                cout << table[x].points << endl;
             }
-            cout << endl;
+            
+
+            // for (int x = 0; x < j; x++)
+            // {
+            //     cout << table[x].Getname() << " " << table[x].Getmoney() << endl; 
+            // }
+            // cout << endl;
 
             /* See who wins - END */
 
@@ -88,12 +247,12 @@ int main() {
         else
         {
             /* Set players hands */
-            Player semitable[8];
+            
             for (int f = 0; f < 8; f++)
             {
                 semitable[f] = nullplayer;
             }
-            int aux = j;
+            int aux = 8;
             inFile >> j;
             if (j < 2 && j >8)
             {

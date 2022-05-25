@@ -10,6 +10,9 @@ using namespace std;
 class Player{
 
     public:
+        Card hand[5];
+        int points;
+
         Player();
         void Setname(string name);
         void Setmoney(int money);
@@ -17,10 +20,10 @@ class Player{
         string Getname();
         int Getmoney();
         Card Getcardhand(int i);
+        
     private:
         string name;
         int money;
-        Card hand[5];
 };
 
 #endif

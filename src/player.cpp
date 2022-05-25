@@ -4,6 +4,7 @@ Player::Player()
 {
     this->name = "NULL";
     this->money = 0;
+    this->points = 0;
     Card card;
     for (int i = 0; i < 5; i++)
     {
