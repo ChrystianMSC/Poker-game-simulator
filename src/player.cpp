@@ -6,8 +6,9 @@ Player::Player()
     this->name = "NULL";
     this->money = 0;
     this->points = 0;
+    this->contribuition = 0;
     Card card;
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < SIZEH; i++)
     {
         this->hand[i] = card;
     }
@@ -26,7 +27,7 @@ void Player::Setmoney(int money)
 
 void Player::Setcardhand(Card card)
 {
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < SIZEH; i++)
     {
         if (this->hand[i].num == 0)
         {
@@ -34,6 +35,16 @@ void Player::Setcardhand(Card card)
             break;
         }
 
+    }
+    
+}
+
+void Player::Resethand()
+{
+    for (int i = 0; i < SIZEH; i++)
+    {
+        Card card;
+        this->hand[i] = card;
     }
     
 }

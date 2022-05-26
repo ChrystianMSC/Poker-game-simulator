@@ -4,6 +4,8 @@
 
 using namespace std;
 
+#define SIZET 8
+
 #define RSF 9
 #define SF 8
 #define FK 7
@@ -13,6 +15,33 @@ using namespace std;
 #define TK 3
 #define TP 2
 #define OP 1
+
+string Classification(int n)
+{
+    switch (n)
+    {
+    case RSF:
+        return "RSF";
+    case SF:
+        return "SF";
+    case FK:
+        return "FK";
+    case FH:
+        return "FH";
+    case F:
+        return "F";
+    case S:
+        return "S";
+    case TK:
+        return "TK";
+    case TP:
+        return "TP";
+    case OP:
+        return "OP";
+    default:
+        return "N";
+    }
+}
 
 int Ratehand(Card arr[])
 {
@@ -30,7 +59,7 @@ int Ratehand(Card arr[])
         vec[i] = 0;
     }
     
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < SIZEH; i++)
     {
         switch (arr[i].suit)
         {
@@ -51,7 +80,7 @@ int Ratehand(Card arr[])
         continue;
         }
     }
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < SIZEH; i++)
     {
         vec[arr[i].num - 1]++;
     }
@@ -90,7 +119,7 @@ int Ratehand(Card arr[])
             two++;
         }
     }
-    if ((P == 5 || E == 5 || C == 5 || O == 5) && counter > 0)
+    if ((P == SIZEH || E == SIZEH || C == SIZEH || O == SIZEH) && counter > 0)
     {
         if (vec[9] == 1)
         {
@@ -101,7 +130,7 @@ int Ratehand(Card arr[])
             return SF;
         }
     }
-    if ((P == 5 || E == 5 || C == 5 || O == 5) && counter == 0)
+    if ((P == SIZEH || E == SIZEH || C == SIZEH || O == SIZEH) && counter == 0)
     {
         return F;
     }
@@ -113,7 +142,7 @@ int Ratehand(Card arr[])
     {
         return FH;
     }
-    if (!(P == 5 || E == 5 || C == 5 || O == 5) && counter == 5)
+    if (!(P == SIZEH || E == SIZEH || C == SIZEH || O == SIZEH) && counter >= SIZEH)
     {
         return S;
     }
@@ -143,6 +172,17 @@ void bubbleSort(Card arr[], int n)
     
 }
 
+void bubbleSortplayer(Player arr[], int n)
+{
+    int i, j;
+    for (i = 0; i < n - 1; i++)
+ 
+        for (j = 0; j < n - i - 1; j++)
+            if (arr[j].Getmoney() < arr[j + 1].Getmoney())
+                swap(arr[j], arr[j + 1]);
+    
+}
+
 void printArray(Card arr[], int size)
 {
     int i;
@@ -154,42 +194,45 @@ void printArray(Card arr[], int size)
 int main() {
 
     int n = 0, di = 0, j = 0, pin = 0, pote = 0, bet = 0;
+    int origin = 0;
     string name;
 
-    Player table[8];
-    Player semitable[8];
     Player nullplayer;
 
-    ifstream inFile;
-
-    for (int i = 0; i < 8; i++)
+    Player table[SIZET];
+    for (int i = 0; i < SIZET; i++)
     {
         table[i] = nullplayer;
     }
     
+    Player semitable[SIZET];
+
+    ifstream inFile;
+    
     inFile.open("entrada.txt");
     if (!inFile) {
         cout << "Unable to open file";
-        exit(1); // terminate with error
+        exit(1);
     }
     
     inFile >> n;
     inFile >> di;
 
-
     for (int i = 0; i < n; i++)
     {
-        pote = 0;
         if (i == 0)
         {
-            /* Set players and hands */
+            /* Set players, bet and hands --------------------------------------------------------------------------- */
             inFile >> j;
-            if (j < 2 && j >8)
+            origin = j;
+            if (j < 2 && j >SIZET)
             {
-                cout << "Number of players invalid, please enter a number between 2 and 8" << endl;
+                cout << "Number of players invalid, please enter a number between 2 and SIZET" << endl;
                 return 0;
             }
+            
             inFile >> pin;
+            
 
             for (int x = 0; x < j; x++)
             {
@@ -197,13 +240,15 @@ int main() {
                 inFile >> name;
                 p.Setname(name);
                 inFile >> bet;
-                p.Setmoney(di - bet);
-                pote += bet;
+                p.Setmoney(di);
+                p.Setmoney(p.Getmoney() - bet);
+                p.Setmoney(p.Getmoney() - pin);
+                pote += (bet + pin);
 
                 Card card;
                 int num;
                 char suit;
-                for (int z = 0; z < 5; z++)
+                for (int z = 0; z < SIZEH; z++)
                 {
                     inFile >> num;
                     inFile >> suit;
@@ -211,186 +256,253 @@ int main() {
                     p.Setcardhand(card);
                 }
                 bubbleSort(p.hand, sizeof(p.hand)/sizeof(p.hand[0]));
-                // printArray(p.hand, sizeof(p.hand)/sizeof(p.hand[0]));
+                p.points = Ratehand(p.hand);
                 table[x] = p;
             }
-            /* Set players and hands - END */
-
-            /* See who wins */
-
             for (int x = 0; x < j; x++)
             {
-                table[x].points = Ratehand(table[x].hand);
-                cout << table[x].points << endl;
+                if (table[x].Getmoney() < 0)
+                {
+                    pin = di + 1;
+                }
+                
             }
             
+            /* Set players and hands - END ---------------------------------------------------------------------- */
 
-            // for (int x = 0; x < j; x++)
-            // {
-            //     cout << table[x].Getname() << " " << table[x].Getmoney() << endl; 
-            // }
-            // cout << endl;
 
-            /* See who wins - END */
+            /* See who wins ------------------------------------------------------------------------------------- */
+            int winner = 0;
+            int numwin = 1;
 
-            /* Reset the hands */
             for (int x = 0; x < j; x++)
             {
-                Card card;
-                for (int z = 0; z < 5; z++)
+                for (int z = 0; z < j; z++)
                 {
-                    table[x].Setcardhand(card);
+                    if (x == z)
+                    {
+                        continue;
+                    }
+                    if (table[x].points > table[z].points)
+                    {
+                        winner = x;
+                    }
                 }
             }
-            /* Reset the hands - END */
+            for (int x = 0; x < j; x++)
+            {
+                if ((table[x].points == table[winner - 1].points) && (table[x].Getname() != table[winner - 1].Getname()))
+                {
+                    numwin++;
+                }
+                
+            }
+            if (pin > di)
+            {
+                for (int x = 0; x < j; x++)
+                {
+                    table[x].Setmoney(di);
+                }
+                cout << 0 << " " << 0 << " " << "I" << endl;
+                continue;
+            }
+
+            if (numwin == 1)
+            {
+                cout << numwin << " " << pote << " " << Classification(table[winner - 1].points) << endl;
+                cout << table[winner - 1].Getname() << endl;
+                table[winner-1].Setmoney(table[winner-1].Getmoney() + pote);
+            }
+            if (numwin > 1)
+            {
+                cout << numwin << " " << pote/numwin << " " << Classification(table[winner - 1].points) << endl;
+                cout << table[winner - 1].Getname() << endl;
+                table[winner-1].Setmoney(table[winner-1].Getmoney() + (pote/numwin));
+                for (int x = 0; x < j; x++)
+                {
+                    if ((table[x].points == table[winner - 1].points) && (table[x].Getname() != table[winner - 1].Getname()))
+                    {
+                        cout << table[x].Getname() << endl;
+                        table[x].Setmoney(table[x].Getmoney() + (pote/numwin));
+                    }
+                }
+            }
+
+            /* See who wins - END ------------------------------------------------------------------------------- */
+
+
+            /* Reset the hands ---------------------------------------------------------------------------------- */
+            for (int x = 0; x < SIZET; x++)
+            {
+                table[x].Resethand();
+            }
+            /* Reset the hands - END ----------------------------------------------------------------------------- */
+
 
         }
         else
         {
-            /* Set players hands */
-            
-            for (int f = 0; f < 8; f++)
+            pote = 0;
+            Player auxtable[SIZET];
+            for (int x = 0; x < SIZET; x++)
             {
-                semitable[f] = nullplayer;
+                auxtable[x] = table[x];
             }
-            int aux = 8;
-            inFile >> j;
-            if (j < 2 && j >8)
+            
+            /* Set players hands --------------------------------------------------------------------------------- */
+            
+            for (int x = 0; x < SIZET; x++)
             {
-                cout << "Number of players invalid, please enter a number between 2 and 8" << endl;
+                semitable[x] = nullplayer;
+            }
+
+
+            inFile >> j;
+
+            if (j < 2 && j >SIZET)
+            {
+                cout << "Number of players invalid, please enter a number between 2 and SIZET" << endl;
                 return 0;
             }
             inFile >> pin;
+            
 
             for (int k = 0; k < j; k++)
             {
                 inFile >> name;
-
-                for (int x = 0; x < aux; x++)
+                for (int x = 0; x < SIZET; x++)
                 {
                     if (table[x].Getname() == name)
                     {
+                        Player p = table[x];
+
                         inFile >> bet;
-                        table[x].Setmoney(table[x].Getmoney() - bet);
+                        p.Setmoney(p.Getmoney() - bet);
+                        if (p.Getmoney() < 0)
+                        {
+                            pin = di+1;
+                        }
                         pote += bet;
 
                         Card card;
                         int num;
                         char suit;
-                        for (int z = 0; z < 5; z++)
+                        for (int z = 0; z < SIZEH; z++)
                         {
                             inFile >> num;
                             inFile >> suit;
                             card.Setcard(num, suit);
-                            table[x].Setcardhand(card);
+                            p.Setcardhand(card);
                         }
-                        table[x].points = Ratehand(table[x].hand);
-                        semitable[k] = table[x];
+                        bubbleSort(p.hand, sizeof(p.hand)/sizeof(p.hand[0]));
+
+                        p.points = Ratehand(p.hand);
+                        semitable[k] = p;
                         
                     }
                     else
                     {
-                        table[x].Setmoney(table[x].Getmoney() - pin);
-                        pote += pin;
+                        
+                        if (table[x].contribuition == 0 && table[x].Getname() != "NULL")
+                        {
+                            table[x].Setmoney(table[x].Getmoney() - pin);
+                            table[x].contribuition = 1; 
+                            pote += pin;
+                        }
+                        if (table[x].Getmoney() < 0)
+                        {
+                            pin = di+1;
+                        }
+                        
                     }
                     
-                    
                 }
-                
             }
-            /* Set players hands - END */
-
-            /* See who wins semitable */
-            cout << endl;
-            for (int x = 0; x < j; x++)
+            for (int x = 0; x < SIZET; x++)
             {
-                cout << semitable[x].Getname() << " " << semitable[x].points << endl;
-                for (int g = 0; g < 5; g++)
+                table[x].contribuition = 0; 
+            }
+            if (pin > di)
+            {
+                for (int x = 0; x < j; x++)
                 {
-                    cout << semitable[x].Getcardhand(g).num << semitable[x].Getcardhand(g).suit << " ";
-                    
+                    table[x] = auxtable[x];
                 }
-                cout << endl;
-                
+                cout << 0 << " " << 0 << " " << "I" << endl;
+                continue;
             }
             
+            /* Set players hands - END ---------------------------------------------------------------------------- */
 
 
-            /* See who wins semitable - END */
+            /* See who wins semitable ------------------------------------------------------------------------------- */
+            int winner = 0;
+            int numwin = 1;
 
-            /* Reset the hands */
             for (int x = 0; x < j; x++)
             {
-                Card card;
-                for (int z = 0; z < 5; z++)
+                for (int z = 0; z < j; z++)
                 {
-                    table[x].Setcardhand(card);
+                    if (x == z)
+                    {
+                        continue;
+                    }
+                    if (semitable[x].points > semitable[z].points)
+                    {
+                        winner = x;
+                    }
                 }
             }
-            /* Reset the hands - END */
+            for (int x = 0; x < j; x++)
+            {
+                if ((semitable[x].points == semitable[winner].points) && (semitable[x].Getname() != semitable[winner].Getname()))
+                {
+                    numwin++;
+                }
+                
+            }
+            if (numwin == 1)
+            {
+                cout << numwin << " " << pote << " " << Classification(semitable[winner].points) << endl;
+                cout << semitable[winner].Getname() << endl;
+                semitable[winner].Setmoney(semitable[winner].Getmoney() + pote);
+            }
+            if (numwin > 1)
+            {
+                cout << numwin << " " << pote/numwin << " " << Classification(semitable[winner].points) << endl;
+                cout << semitable[winner].Getname() << endl;
+                semitable[winner].Setmoney(semitable[winner].Getmoney() + (pote/numwin));
+                for (int x = 0; x < j; x++)
+                {
+                    if ((semitable[x].points == semitable[winner].points) && (semitable[x].Getname() != semitable[winner].Getname()))
+                    {
+                        cout << semitable[x].Getname() << endl;
+                        semitable[x].Setmoney(semitable[winner].Getmoney() + (pote/numwin));
+                    }
+                }
+            }
+        
+            /* See who wins semitable - END ------------------------------------------------------------------------ */
+
+
+            /* Reset the hands ------------------------------------------------------------------------------------- */
+            for (int x = 0; x < SIZET; x++)
+            {
+                table[x].Resethand();
+            }
+            /* Reset the hands - END--------------------------------------------------------------------------------- */
+
         }
 
     }
-
-    // int n, di, j, pin, pote = 0, bet, cardnum;
-    // char cardsu;
-    // string name;
+    bubbleSortplayer(table, sizeof(table)/sizeof(table[0]));
+    cout << endl;
+    cout << "####" << endl;
+    for (int i = 0; i < origin; i++)
+    {
+        cout << table[i].Getname() << " " << table[i].Getmoney() << endl;
+    }
     
-    // ifstream inFile;
-    // inFile.open("entrada.txt");
-    // if (!inFile) {
-    //     cout << "Unable to open file";
-    //     exit(1); // terminate with error
-    // }
-    
-    // inFile >> n;
-    // inFile >> di;
-    // inFile >> j;
-    // inFile >> pin;
-    // inFile >> name;
-    // inFile >> bet;
-    // pote += bet;
-    // inFile >> cardnum;
-    // inFile >> cardsu;
-
-    // inFile.close();
-
-    // cout << "Numero de rodadas: " << n << endl;
-    // cout << "Dinheiro inicial: " << di << endl;
-    // cout << "Numero de jogadores da rodada: " << j << endl;
-    // cout << "Pingo minimo do pingo: " << pin << endl;
-    // cout << "Nome do jogador: " << name << endl;
-    // cout << "Aposta do jogador: " << bet << endl;
-    // cout << "Numero da primeira carta: " << cardnum << endl;
-    // cout << "Naipe da primeira carta: " << cardsu << endl;
-    // cout << "Valor presente no pote: " << pote << endl;
-
-
-
-    // Player p;
-    // p.Setname("Chrystian");
-    // p.Setmoney(1000000);
-    // Card card;
-    // int num;
-    // char suit;
-    // for (int i = 0; i < 5; i++)
-    // {
-    //     cin >> num;
-    //     cin >> suit;
-    //     card.Setcard(num, suit);
-    //     p.Setcardhand(card);
-    // }
-    
-    // cout << p.Getname() << endl;
-    // cout << p.Getmoney() << endl;
-    // for (int i = 0; i < 5; i++)
-    // {
-    //     cout << p.Getcardhand(i).num;
-    //     cout << p.Getcardhand(i).suit << " ";
-    // }
-    // cout << endl;
-    
-
 
     return 0;
 }
