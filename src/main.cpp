@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <regex.h>
 #include "player.h"
 
 using namespace std;
@@ -178,24 +179,16 @@ void bubbleSortplayer(Player arr[], int n)
     for (i = 0; i < n - 1; i++)
  
         for (j = 0; j < n - i - 1; j++)
-            if (arr[j].Getmoney() < arr[j + 1].Getmoney())
+            if (arr[j].money < arr[j + 1].money)
                 swap(arr[j], arr[j + 1]);
     
-}
-
-void printArray(Card arr[], int size)
-{
-    int i;
-    for (i = 0; i < size; i++)
-        cout << arr[i].num << arr[i].suit << " ";
-    cout << endl;
 }
 
 int main() {
 
     int n = 0, di = 0, j = 0, pin = 0, pote = 0, bet = 0;
     int origin = 0;
-    string name;
+    char name [20];
 
     Player nullplayer;
 
@@ -207,23 +200,24 @@ int main() {
     
     Player semitable[SIZET];
 
-    ifstream inFile;
+    FILE *inFile;
     
-    inFile.open("entrada.txt");
+    inFile = fopen("entrada.txt", "r");
+
     if (!inFile) {
         cout << "Unable to open file";
         exit(1);
     }
     
-    inFile >> n;
-    inFile >> di;
+    fscanf(inFile, "%d", &n);
+    fscanf(inFile, "%d", &di);
 
     for (int i = 0; i < n; i++)
     {
         if (i == 0)
         {
             /* Set players, bet and hands --------------------------------------------------------------------------- */
-            inFile >> j;
+            fscanf(inFile, "%d", &j);
             origin = j;
             if (j < 2 && j >SIZET)
             {
@@ -231,27 +225,27 @@ int main() {
                 return 0;
             }
             
-            inFile >> pin;
+            fscanf(inFile, "%d", &pin);
             
 
             for (int x = 0; x < j; x++)
             {
                 Player p;
-                inFile >> name;
-                p.Setname(name);
-                inFile >> bet;
-                p.Setmoney(di);
-                p.Setmoney(p.Getmoney() - bet);
-                p.Setmoney(p.Getmoney() - pin);
-                pote += (bet + pin);
+                fscanf(inFile, "%[^0-9]", name);
+                p.name = name;
+                fscanf(inFile, "%d", &bet);
+                p.money = di;
+                p.money -= bet;
+                p.money -= pin;
+                pote += bet + pin;
 
                 Card card;
                 int num;
                 char suit;
                 for (int z = 0; z < SIZEH; z++)
                 {
-                    inFile >> num;
-                    inFile >> suit;
+                    fscanf(inFile, "%d", &num);
+                    fscanf(inFile, "%c", &suit);
                     card.Setcard(num, suit);
                     p.Setcardhand(card);
                 }
@@ -261,7 +255,7 @@ int main() {
             }
             for (int x = 0; x < j; x++)
             {
-                if (table[x].Getmoney() < 0)
+                if (table[x].money < 0)
                 {
                     pin = di + 1;
                 }
@@ -291,7 +285,7 @@ int main() {
             }
             for (int x = 0; x < j; x++)
             {
-                if ((table[x].points == table[winner - 1].points) && (table[x].Getname() != table[winner - 1].Getname()))
+                if ((table[x].points == table[winner - 1].points) && (table[x].name != table[winner - 1].name))
                 {
                     numwin++;
                 }
@@ -301,7 +295,7 @@ int main() {
             {
                 for (int x = 0; x < j; x++)
                 {
-                    table[x].Setmoney(di);
+                    table[x].money = di;
                 }
                 cout << 0 << " " << 0 << " " << "I" << endl;
                 continue;
@@ -309,23 +303,24 @@ int main() {
 
             if (numwin == 1)
             {
-                cout << numwin << " " << pote << " " << Classification(table[winner - 1].points) << endl;
-                cout << table[winner - 1].Getname() << endl;
-                table[winner-1].Setmoney(table[winner-1].Getmoney() + pote);
+                cout << numwin << " " << pote << " " << Classification(table[winner - 1].points);
+                cout << table[winner - 1].name << endl;
+                table[winner-1].money += pote;
             }
             if (numwin > 1)
             {
-                cout << numwin << " " << pote/numwin << " " << Classification(table[winner - 1].points) << endl;
-                cout << table[winner - 1].Getname() << endl;
-                table[winner-1].Setmoney(table[winner-1].Getmoney() + (pote/numwin));
+                cout << numwin << " " << pote/numwin << " " << Classification(table[winner - 1].points);
+                cout << table[winner - 1].name << endl;
+                table[winner-1].money += (pote/numwin);
                 for (int x = 0; x < j; x++)
                 {
-                    if ((table[x].points == table[winner - 1].points) && (table[x].Getname() != table[winner - 1].Getname()))
+                    if ((table[x].points == table[winner - 1].points) && (table[x].name != table[winner - 1].name))
                     {
-                        cout << table[x].Getname() << endl;
-                        table[x].Setmoney(table[x].Getmoney() + (pote/numwin));
+                        cout << table[x].name;
+                        table[x].money += (pote/numwin);
                     }
                 }
+
             }
 
             /* See who wins - END ------------------------------------------------------------------------------- */
@@ -357,28 +352,28 @@ int main() {
             }
 
 
-            inFile >> j;
+            fscanf(inFile, "%d", &j);
 
             if (j < 2 && j >SIZET)
             {
                 cout << "Number of players invalid, please enter a number between 2 and SIZET" << endl;
                 return 0;
             }
-            inFile >> pin;
+            fscanf(inFile, "%d", &pin);
             
 
             for (int k = 0; k < j; k++)
             {
-                inFile >> name;
+                fscanf(inFile, "%[^0-9]", name);
                 for (int x = 0; x < SIZET; x++)
                 {
-                    if (table[x].Getname() == name)
+                    if (table[x].name == name)
                     {
                         Player p = table[x];
 
-                        inFile >> bet;
-                        p.Setmoney(p.Getmoney() - bet);
-                        if (p.Getmoney() < 0)
+                        fscanf(inFile, "%d", &bet);
+                        p.money -= bet;
+                        if (p.money < 0)
                         {
                             pin = di+1;
                         }
@@ -389,8 +384,8 @@ int main() {
                         char suit;
                         for (int z = 0; z < SIZEH; z++)
                         {
-                            inFile >> num;
-                            inFile >> suit;
+                            fscanf(inFile, "%d", &num);
+                            fscanf(inFile, "%c", &suit);
                             card.Setcard(num, suit);
                             p.Setcardhand(card);
                         }
@@ -403,13 +398,13 @@ int main() {
                     else
                     {
                         
-                        if (table[x].contribuition == 0 && table[x].Getname() != "NULL")
+                        if (table[x].contribuition == 0 && table[x].name != "NULL")
                         {
-                            table[x].Setmoney(table[x].Getmoney() - pin);
+                            table[x].money -= pin;
                             table[x].contribuition = 1; 
                             pote += pin;
                         }
-                        if (table[x].Getmoney() < 0)
+                        if (table[x].money < 0)
                         {
                             pin = di+1;
                         }
@@ -455,7 +450,7 @@ int main() {
             }
             for (int x = 0; x < j; x++)
             {
-                if ((semitable[x].points == semitable[winner].points) && (semitable[x].Getname() != semitable[winner].Getname()))
+                if ((semitable[x].points == semitable[winner].points) && (semitable[x].name != semitable[winner].name))
                 {
                     numwin++;
                 }
@@ -463,23 +458,24 @@ int main() {
             }
             if (numwin == 1)
             {
-                cout << numwin << " " << pote << " " << Classification(semitable[winner].points) << endl;
-                cout << semitable[winner].Getname() << endl;
-                semitable[winner].Setmoney(semitable[winner].Getmoney() + pote);
+                cout << numwin << " " << pote << " " << Classification(semitable[winner].points);
+                cout << semitable[winner].name << endl;
+                semitable[winner].money += pote;
             }
             if (numwin > 1)
             {
-                cout << numwin << " " << pote/numwin << " " << Classification(semitable[winner].points) << endl;
-                cout << semitable[winner].Getname() << endl;
-                semitable[winner].Setmoney(semitable[winner].Getmoney() + (pote/numwin));
+                cout << numwin << " " << pote/numwin << " " << Classification(semitable[winner].points);
+                cout << semitable[winner].name;
+                semitable[winner].money += (pote/numwin);
                 for (int x = 0; x < j; x++)
                 {
-                    if ((semitable[x].points == semitable[winner].points) && (semitable[x].Getname() != semitable[winner].Getname()))
+                    if ((semitable[x].points == semitable[winner].points) && (semitable[x].name != semitable[winner].name))
                     {
-                        cout << semitable[x].Getname() << endl;
-                        semitable[x].Setmoney(semitable[winner].Getmoney() + (pote/numwin));
+                        cout << semitable[x].name;
+                        semitable[x].money += (pote/numwin);
                     }
                 }
+                cout << endl;
             }
         
             /* See who wins semitable - END ------------------------------------------------------------------------ */
@@ -497,12 +493,14 @@ int main() {
     }
     bubbleSortplayer(table, sizeof(table)/sizeof(table[0]));
     cout << endl;
-    cout << "####" << endl;
+    cout << endl;
+    cout << "####";
     for (int i = 0; i < origin; i++)
     {
-        cout << table[i].Getname() << " " << table[i].Getmoney() << endl;
+        cout << table[i].name << " " << table[i].money;
     }
-    
+    cout << endl;
+    fclose(inFile);
 
     return 0;
 }

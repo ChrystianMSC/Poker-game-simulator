@@ -10,22 +10,17 @@
 class Player{
 
     public:
+        Player();
+
         Card hand[5];
         int points;
         int contribuition;
+        int money;
+        std::string name;
 
-        Player();
-        void Setname(std::string name);
-        void Setmoney(int money);
         void Setcardhand(Card card);
         void Resethand();
-        std::string Getname();
-        int Getmoney();
-        Card Getcardhand(int i);
-        
-    private:
-        std::string name;
-        int money;
+
 };
 
 #endif

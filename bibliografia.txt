@@ -1,7 +1,7 @@
 https://www.tutorialspoint.com/how-to-read-a-text-file-with-cplusplus
 http://www.fredosaurus.com/notes-cpp/io/readtextfile.html
 https://www.w3schools.com/cpp/cpp_strings_concat.asp
-
+https://www.programiz.com/c-programming/c-file-input-output
 0 1 2 3 4 5 6 7 8  9  10 11 12
 1 2 3 4 5 6 7 8 9  10 11 12 13
 2 3 4 5 6 7 8 9 10 D  Q  R  A

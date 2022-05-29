@@ -1,216 +1,157 @@
-make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
-# GNU Make 3.82.90
-# Built for i686-pc-mingw32
-# Copyright (C) 1988-2012 Free Software Foundation, Inc.
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
-# Make data base, printed on Wed May 25 19:56:04 2022
+# Make data base, printed on Sun May 29 13:36:25 2022
 
 # Variables
 
 # automatic
-<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+<D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
+# environment
+WSLENV = VSCODE_WSL_EXT_LOCATION/up
 # default
 .SHELLFLAGS := -c
 # makefile (from 'Makefile', line 5)
 SRC := src
-# makefile
-MAKEFLAGS = Rrqp
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
-?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+?D = $(patsubst %/,%,$(dir $?))
 # automatic
-@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
-# environment
-HOMEDRIVE = C:
+@D = $(patsubst %/,%,$(dir $@))
 # automatic
 @F = $(notdir $@)
-# automatic
-^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
 # makefile
-CURDIR := c:/Users/chrys/OneDrive/�rea de Trabalho/TP1
-# default
-SHELL := sh.exe
+CURDIR := /mnt/c/Users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator
+# makefile
+SHELL = /bin/sh
 # makefile (from 'Makefile', line 4)
 BIN := bin
 # environment
-WINDIR = C:\Windows
+VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
 # environment
-VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{},"_languagePackSupport":true}
-# environment
-ONEDRIVE = C:\Users\chrys\OneDrive
-# environment
-PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+_ = /usr/bin/sh
 # makefile (from 'Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
-# environment
-FPS_BROWSER_USER_PROFILE_STRING = Default
-# environment
-TMP = C:\Users\chrys\AppData\Local\Temp
+# 'override' directive
+GNUMAKEFLAGS := 
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-PROGRAMW6432 = C:\Program Files
+VSCODE_CWD = /mnt/c/Users/chrys/AppData/Local/Programs/Microsoft VS Code
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PROGRAMDATA = C:\ProgramData
-# environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-f8bc5122-f9f8-437d-a59c-0daed22eec78-sock
-# environment
-VSCODE_CWD = C:\Users\chrys\OneDrive\�rea de Trabalho
-# environment
-PATH = C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\MinGW\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Git\cmd;C:\wget;C:\Program Files\erl-24.2.1\bin;C:\Program Files (x86)\Elixir\bin;C:\Users\chrys\.mix\escripts;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\msys64\mingw64\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\chrys\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\chrys\AppData\Local\Programs\Python\Python310\;C:\Users\chrys\AppData\Local\Microsoft\WindowsApps;C:\Users\chrys\AppData\Local\Programs\Microsoft VS Code\bin;C:\wget;;C:\Users\chrys\AppData\Local\Programs\Julia-1.7.1\bin
-# environment
-COMMONPROGRAMW6432 = C:\Program Files\Common Files
-# environment
-PROCESSOR_ARCHITECTURE = x86
-# environment
-USERPROFILE = C:\Users\chrys
-# environment
-ALLUSERSPROFILE = C:\ProgramData
+PATH = /home/chrys/.vscode-server/bin/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/MinGW/bin:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn/:/mnt/c/Program Files/Git/cmd:/mnt/c/wget:/mnt/c/Program Files/erl-24.2.1/bin:/mnt/c/Program Files (x86)/Elixir/bin:/mnt/c/Users/chrys/.mix/escripts:/mnt/c/Program Files/Microsoft SQL Server/150/Tools/Binn/:/mnt/c/msys64/mingw64/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Users/chrys/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/chrys/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/chrys/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/chrys/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/wget:/mnt/c/Users/chrys/AppData/Local/Programs/Julia-1.7.1/bin
 # environment
 VSCODE_LOG_STACK = false
 # environment
-NUMBER_OF_PROCESSORS = 4
-# environment
-ELECTRON_RUN_AS_NODE = 1
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-d64e9dd1-3c83-4ab5-a338-a3762b93085a.sock
 # makefile (from 'Makefile', line 7)
 LIB := lib
 # default
-.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_7124_ZCPTVRJZWEYXLGCJ
-# environment
 VSCODE_PIPE_LOGGING = true
 # environment
-COMPUTERNAME = DESKTOP-IA12ET6
-# environment
-PROGRAMFILES = C:\Program Files (x86)
-# environment
-DRIVERDATA = C:\Windows\System32\Drivers\DriverData
-# environment
-ORIGINAL_XDG_CURRENT_DESKTOP = undefined
-# environment
-USERNAME = chrys
-# environment
-PUBLIC = C:\Users\Public
+PWD = /mnt/c/Users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator
+# default
+.LOADED := 
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\chrys\AppData\Roaming\Code\CachedData\c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+HOME = /home/chrys
+# environment
+LOGNAME = chrys
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
-COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
-# environment
-LOGONSERVER = \\DESKTOP-IA12ET6
-# environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
-# environment
-USERDOMAIN = DESKTOP-IA12ET6
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
 # environment
 MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
+# environment
+SHLVL = 0
 # makefile (from 'Makefile', line 2)
 CXX_FLAGS := -Wall -Wextra -std=c++17 -ggdb
 # default
-MAKE_VERSION := 3.82.90
+MAKE_VERSION := 4.2.1
+# environment
+USER = chrys
 # makefile
 .DEFAULT_GOAL := all
 # makefile (from 'Makefile', line 6)
 INCLUDE := include
 # environment
-PROGRAMFILES(X86) = C:\Program Files (x86)
+NAME = DESKTOP-IA12ET6
 # automatic
-%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+%D = $(patsubst %/,%,$(dir $%))
 # environment
-LOCALAPPDATA = C:\Users\chrys\AppData\Local
-# environment
-PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/chrys/.vscode/extensions/ms-vscode-remote.remote-wsl-0.66.3
 # default
-MAKE_COMMAND := make.exe
-# environment
-PROCESSOR_ARCHITEW6432 = AMD64
+MAKE_COMMAND := make
 # default
 .VARIABLES := 
 # automatic
 *F = $(notdir $*)
+# makefile
+MAKEFLAGS = pqrR
 # environment
-PROCESSOR_IDENTIFIER = AMD64 Family 21 Model 101 Stepping 1, AuthenticAMD
-# environment
-OS = Windows_NT
-# environment
-VSCODE_IPC_HOOK = \\.\pipe\98fb28faf2c319a70295ac39ca35d43a-1.67.2-main-sock
-# environment
-HOMEPATH = \Users\chrys
-# environment
-COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
-# environment
-PROMPT = $P$G
-# environment
-MFLAGS = -Rrqp
+MFLAGS = -pqrR
 # automatic
-*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
-# environment
-SYSTEMROOT = C:\Windows
+*D = $(patsubst %/,%,$(dir $*))
 # automatic
-+D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
++D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
-APPDATA = C:\Users\chrys\AppData\Roaming
-# environment
-TEMP = C:\Users\chrys\AppData\Local\Temp
-# environment
-COMSPEC = C:\Windows\system32\cmd.exe
+VSCODE_HANDLES_SIGPIPE = true
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
 # makefile (from 'Makefile', line 10)
-EXECUTABLE := main
+EXECUTABLE := main.exe
 # makefile (from 'Makefile', line 1)
 CXX := g++
 # environment
 LC_ALL = C
 # makefile (from 'Makefile', line 9)
 LIBRARIES := 
+# environment
+HOSTTYPE = x86_64
 # automatic
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
-# environment
-SYSTEMDRIVE = C:
-# environment
-SESSIONNAME = Console
-# environment
-PROCESSOR_REVISION = 6501
 # default
-.INCLUDE_DIRS = C:/MinGW/include
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # default
 .RECIPEPREFIX := 
 # environment
 LANG = C
 # environment
-PROCESSOR_LEVEL = 21
+TERM = xterm-256color
 # environment
-FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 # environment
-VSCODE_PID = 7124
-# environment
-USERDOMAIN_ROAMINGPROFILE = DESKTOP-IA12ET6
+WSL_DISTRO_NAME = Ubuntu
 # variable set hash-table stats:
-# Load=99/1024=10%, Rehash=0, Collisions=12/123=10%
+# Load=70/1024=7%, Rehash=0, Collisions=5/100=5%
 
 # Pattern-specific Variable Values
 
@@ -218,35 +159,10 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-IA12ET6
 
 # Directories
 
-# : could not be stat'd.
-# C:\ProgramData\DockerDesktop\version-bin: could not be stat'd.
-# C:\Users\chrys\AppData\Local\Microsoft\WindowsApps (key C:/Users/chrys/AppData/Local/Microsoft/WindowsApps, mtime 1653477614): 17 files, no impossibilities.
-# C:\wget (key C:/wget, mtime 1640113312): 7 files, no impossibilities.
-# C:\Program Files (x86)\Elixir\bin (key C:/Program Files (x86)/Elixir/bin, mtime 1645472694): 11 files, no impossibilities.
-# C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1617976437): 29 files, no impossibilities.
-# . (key c:/Users/chrys/OneDrive/�rea de Trabalho/TP1, mtime 1653408499): 11 files, no impossibilities.
-# C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1652713641): 5 files, no impossibilities.
-# C:\Users\chrys\.mix\escripts: could not be stat'd.
-# C:\Program Files\Microsoft SQL Server\150\Tools\Binn\ (key C:/Program Files/Microsoft SQL Server/150/Tools/Binn/, mtime 1651423305): 4 files, no impossibilities.
-# C:\Users\chrys\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/chrys/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1652960335): 4 files, no impossibilities.
-# C:\Program Files\Docker\Docker\resources\bin (key C:/Program Files/Docker/Docker/resources/bin, mtime 1652962034): 13 files, no impossibilities.
-# C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1630874413): 8 files, no impossibilities.
-# C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common (key C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common, mtime 1638465365): 10 files, no impossibilities.
-# C:\Users\chrys\AppData\Local\Programs\Python\Python310\ (key C:/Users/chrys/AppData/Local/Programs/Python/Python310/, mtime 1649951593): 19 files, no impossibilities.
-# C:\MinGW\bin (key C:/MinGW/bin, mtime 1628251110): 128 files, no impossibilities.
-# C:\Program Files\erl-24.2.1\bin: could not be stat'd.
-# C:\Users\chrys\AppData\Local\Programs\Python\Python310\Scripts\ (key C:/Users/chrys/AppData/Local/Programs/Python/Python310/Scripts/, mtime 1649951652): 19 files, no impossibilities.
-# C:\Windows (key C:/Windows, mtime 1652659456): 112 files, no impossibilities.
-# C:\Program Files\Microsoft SQL Server\130\Tools\Binn\ (key C:/Program Files/Microsoft SQL Server/130/Tools/Binn/, mtime 1621809739): 4 files, no impossibilities.
-# C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1652448213): 170 files, no impossibilities.
-# src (key c:/Users/chrys/OneDrive/�rea de Trabalho/TP1/src, mtime 1653243959): 6 files, no impossibilities.
-# C:\Users\chrys\AppData\Local\Programs\Julia-1.7.1\bin (key C:/Users/chrys/AppData/Local/Programs/Julia-1.7.1/bin, mtime 1643312814): 61 files, no impossibilities.
-# C:\Program Files\Common Files\Oracle\Java\javapath (key C:/Program Files/Common Files/Oracle/Java/javapath, mtime 1651428173): 6 files, no impossibilities.
-# C:\msys64\mingw64\bin (key C:/msys64/mingw64/bin, mtime 1652651429): 179 files, no impossibilities.
-# C:\Windows\system32 (key C:/Windows/system32, mtime 1652801806): 3087 files, no impossibilities.
-# C:\Windows\System32\OpenSSH\: could not be stat'd.
+# . (device 14, inode 4503599627804108): 10 files, no impossibilities.
+# src (device 14, inode 2251799814161102): 6 files, no impossibilities.
 
-# 3910 files, no impossibilities in 27 directories.
+# 16 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -254,23 +170,25 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-IA12ET6
 
 # Files
 
-all: bin/main
+all: bin/main.exe
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Successfully updated.
 
-# Not a target:
-.SUFFIXES:
+bin/main.exe: src/deck.cpp src/player.cpp src/card.cpp src/main.cpp
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-05-29 13:35:41.6306087
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 20):
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-22 13:12:42
+#  Last modified 2022-05-29 13:35:28.0079202
 #  File has been updated.
 #  Successfully updated.
 
@@ -283,7 +201,7 @@ Makefile:
 # Not a target:
 src/deck.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-22 16:42:47
+#  Last modified 2022-05-28 15:28:34.5255372
 #  File has been updated.
 #  Successfully updated.
 
@@ -305,29 +223,21 @@ clean:
 # Not a target:
 src/main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-25 14:37:22
+#  Last modified 2022-05-29 13:31:33.0269552
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/card.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-22 15:40:42
+#  Last modified 2022-05-28 15:28:34.5145259
 #  File has been updated.
 #  Successfully updated.
-
-bin/main: src/main.cpp src/card.cpp src/player.cpp src/deck.cpp
-#  Implicit rule search has not been done.
-#  Last modified 2022-05-25 14:37:26
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 20):
-	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
 
 # Not a target:
 src/player.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-25 13:13:38
+#  Last modified 2022-05-29 13:24:27.1363312
 #  File has been updated.
 #  Successfully updated.
 
@@ -339,14 +249,12 @@ src/player.cpp:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 8 (7) / strings = 3803 / storage = 57361 B / avg = 15 B
-# current buf: size = 8174 B / used = 208 B / count = 18 / avg = 11 B
-# other used: total = 49187 B / count = 3785 / avg = 12 B
-# other free: total = 65 B / max = 13 B / min = 4 B / avg = 9 B
+# strcache buffers: 1 (0) / strings = 26 / storage = 242 B / avg = 9 B
+# current buf: size = 8162 B / used = 242 B / count = 26 / avg = 9 B
 
-# strcache performance: lookups = 3958 / hit rate = 3%
+# strcache performance: lookups = 41 / hit rate = 36%
 # hash-table stats:
-# Load=3803/8192=46%, Rehash=0, Collisions=1519/3958=38%
-# Finished Make data base on Wed May 25 19:56:04 2022
+# Load=26/8192=0%, Rehash=0, Collisions=2/41=5%
+# Finished Make data base on Sun May 29 13:36:25 2022
 
  

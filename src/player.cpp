@@ -15,15 +15,6 @@ Player::Player()
     
 }
 
-void Player::Setname(string name)
-{
-    this->name = name;
-}
-
-void Player::Setmoney(int money)
-{
-    this->money = money;
-}
 
 void Player::Setcardhand(Card card)
 {
@@ -47,19 +38,4 @@ void Player::Resethand()
         this->hand[i] = card;
     }
     
-}
-
-string Player::Getname()
-{
-    return this->name;
-}
-
-int Player::Getmoney()
-{
-    return this->money;
-}
-
-Card Player::Getcardhand(int i)
-{
-    return this->hand[i];
 }
