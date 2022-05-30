@@ -7,7 +7,7 @@ INCLUDE	:= include
 LIB		:= lib
 
 LIBRARIES	:=
-EXECUTABLE	:= main.exe
+EXECUTABLE	:= main
 
 
 all: $(BIN)/$(EXECUTABLE)
