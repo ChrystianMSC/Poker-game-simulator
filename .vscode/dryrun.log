@@ -1,5 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/mnt/c/users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator'
-g++ -Wall -Wextra -std=c++17 -ggdb -Iinclude -Llib src/funcoes.cpp src/deck.cpp src/player.cpp src/poker.cpp src/card.cpp src/main.cpp -o bin/main 
-make: Leaving directory '/mnt/c/users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator'
+make: Entering directory '/mnt/c/Users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator'
+g++ -Wall -Wextra -std=c++17 -ggdb -Iinclude -Llib src/funcoes.cpp src/deck.cpp src/player.cpp src/card.cpp src/main.cpp -o bin/main 
+make: Leaving directory '/mnt/c/Users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator'
  

@@ -32,14 +32,30 @@ int main() {
     fscanf(inFile, "%d", &n);
     if (n < 1)
     {
-        cout << "Number of rounds invalid" << endl;
+        outFile << "Invalid number of rounds" << endl;
         return 0;
     }
 
     fscanf(inFile, "%d", &di);
     if (di < 1)
     {
-        cout << "Number of rounds invalid" << endl;
+        outFile << "Invalid initial money" << endl;
+        return 0;
+    }
+    fscanf(inFile, "%d", &j);
+            
+    if (j < 2 || j >SIZET)
+    {
+        outFile << "Number of players invalid, please enter a number between 2 and 8" << endl;
+        return 0;
+    }
+    
+    origin = j;
+            
+    fscanf(inFile, "%d", &pin);
+    if (pin < 1 || pin > di)
+    {
+        outFile << "Pingo is invalid, pingo most be a number greater than 0 and less than di" << endl;
         return 0;
     }
 
@@ -49,30 +65,18 @@ int main() {
     {
         /* -------------------------------------------------------------- FIRST ROUND ----------------------------------------------------------------------------- */
         if (i == 0)
-        {
-            fscanf(inFile, "%d", &j);
-            
+        {   
             if (j < 2 && j >SIZET)
             {
-                cout << "Number of players invalid, please enter a number between 2 and SIZET" << endl;
-                return 0;
+                outFile << "Number of players invalid, please enter a number between 2 and 8" << endl;
+                break;
             }
-            
-            origin = j;
-
-            fscanf(inFile, "%d", &pin);
-            if (pin < 1)
-            {
-                cout << "Pingo is invalid, pingo most be 0 or grater" << endl;
-                return 0;
-            }
-            
             TableSet(inFile, table, name, bet, di, pin, &pote, j);
             
             int inv = InvalidRound(table, pin, di, j, outFile);
             if (inv == 1)
             {
-                exit(1);
+                continue;
             }
 
             SeeWhoWinF(table, &pote, j, outFile);
@@ -101,16 +105,16 @@ int main() {
             }
 
             fscanf(inFile, "%d", &j);
-            if (j < 2 && j >SIZET)
+            if (j < 2 || j >SIZET)
             {
                 cout << "Number of players invalid, please enter a number between 2 and SIZET" << endl;
                 return 0;
             }
 
             fscanf(inFile, "%d", &pin);
-            if (pin < 1)
+            if (pin < 1 || pin > di)
             {
-                cout << "Pingo is invalid, pingo most be 0 or grater" << endl;
+                cout << "Pingo is invalid, pingo most be a number greater than 0 and less than di" << endl;
                 return 0;
             }
 
@@ -141,9 +145,15 @@ int main() {
             
             if (pin > di)
             {
-                for (int x = 0; x < j; x++)
+                for (int x = 0; x < origin; x++)
                 {
-                    table[x] = auxtable[x];
+                    for (int z = 0; z < origin; z++)
+                    {
+                        if (table[x].name == auxtable[z].name && table[x].money != auxtable[z].money)
+                        {
+                            table[x].money = auxtable[z].money;
+                        }
+                    }
                 }
                 outFile << 0 << " " << 0 << " " << "I" << endl;
                 continue;

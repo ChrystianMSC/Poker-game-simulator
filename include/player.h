@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "deck.h"
+#include "card.h"
 
 #define SIZEH 5
 

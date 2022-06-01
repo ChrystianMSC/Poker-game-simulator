@@ -523,27 +523,16 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
 
     for (int x = 0; x < j; x++)
     {
-        for (int z = 0; z < j; z++)
+        if (table[winner].points < table[x].points)
         {
-            if (x == z)
-            {
-                continue;
-            }
-            if (table[x].points > table[z].points)
-            {
-                winner = x;
-            }
+            winner = x;
+            numwin = 1;
         }
-    }
-
-    for (int x = 0; x < j; x++)
-    {
-        if ((table[x].points == table[winner - 1].points) && (table[x].name != table[winner - 1].name))
+        if ((table[x].points == table[winner].points) && (table[x].name != table[winner].name))
         {
             numwin++;
         }
     }
-
     if (numwin > 1)
     {
         int quad1 = 0;
@@ -569,22 +558,22 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
         int par1 = 0;
         int par2 = 0;
 
-        switch (table[winner - 1].points)
+        switch (table[winner].points)
         {
             case RSF:
                 break;
             case SF:
                 for (int i = 0; i < j; i++)
                 {
-                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    if ((table[i].points == table[winner].points) && (table[i].name != table[winner].name))
                     {
-                            if (table[i].hand[4].num > table[winner - 1].hand[4].num)
+                            if (table[i].hand[4].num > table[winner].hand[4].num)
                             {
-                                table[winner - 1].points = 0;
+                                table[winner].points = 0;
                                 winner = i;
                                 numwin--;
                             }
-                            if (table[i].hand[4].num < table[winner - 1].hand[4].num)
+                            if (table[i].hand[4].num < table[winner].hand[4].num)
                             {
                                 table[i].points = 0;
                                 numwin--;
@@ -595,10 +584,10 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
             case FK:
                 for (int i = 0; i < j; i++)
                 {
-                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    if ((table[i].points == table[winner].points) && (table[i].name != table[winner].name))
                     {
                         int x = 0;
-                        if (x == 0 && table[winner - 1].hand[x+1].num != table[winner - 1].hand[x].num)
+                        if (x == 0 && table[winner].hand[x+1].num != table[winner].hand[x].num)
                         {
                             quad1 = 1; 
                         }
@@ -615,26 +604,26 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
                             card2 = 4;
                         }
                     }
-                    if (table[i].hand[quad2].num > table[winner - 1].hand[quad1].num)
+                    if (table[i].hand[quad2].num > table[winner].hand[quad1].num)
                     {
-                        table[winner - 1].points = 0;
+                        table[winner].points = 0;
                         winner = i;
                         numwin--;
                     }
-                    if (table[i].hand[quad2].num < table[winner - 1].hand[quad1].num)
+                    if (table[i].hand[quad2].num < table[winner].hand[quad1].num)
                     {
                         table[i].points = 0;
                         numwin--;
                     }
-                    if (table[i].hand[quad2].num == table[winner - 1].hand[quad1].num)
+                    if (table[i].hand[quad2].num == table[winner].hand[quad1].num)
                     {
-                        if (table[i].hand[card2].num > table[winner - 1].hand[card1].num)
+                        if (table[i].hand[card2].num > table[winner].hand[card1].num)
                         {
-                            table[winner - 1].points = 0;
+                            table[winner].points = 0;
                             winner = i;
                             numwin--;
                         }
-                        if (table[i].hand[card2].num < table[winner - 1].hand[card1].num)
+                        if (table[i].hand[card2].num < table[winner].hand[card1].num)
                         {
                             table[i].points = 0;
                             numwin--;
@@ -646,10 +635,10 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
             case FH:
                 for (int i = 0; i < j; i++)
                 {
-                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    if ((table[i].points == table[winner].points) && (table[i].name != table[winner].name))
                     {
                         
-                            if ((table[winner - 1].hand[0].num == table[winner - 1].hand[1].num) && (table[winner - 1].hand[0].num == table[winner - 1].hand[2].num))
+                            if ((table[winner].hand[0].num == table[winner].hand[1].num) && (table[winner].hand[0].num == table[winner].hand[2].num))
                             {
                                 pair1 = 3;
                             }
@@ -666,26 +655,26 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
                                 tri2 = 2;
                             }
                     }
-                    if (table[i].hand[tri2].num > table[winner - 1].hand[tri1].num)
+                    if (table[i].hand[tri2].num > table[winner].hand[tri1].num)
                     {
-                        table[winner - 1].points = 0;
+                        table[winner].points = 0;
                         winner = i;
                         numwin--;
                     }
-                    if (table[i].hand[tri2].num < table[winner - 1].hand[tri1].num)
+                    if (table[i].hand[tri2].num < table[winner].hand[tri1].num)
                     {
                         table[i].points = 0;
                         numwin--;
                     }
-                    if (table[i].hand[tri2].num == table[winner - 1].hand[tri1].num)
+                    if (table[i].hand[tri2].num == table[winner].hand[tri1].num)
                     {
-                        if (table[i].hand[pair2].num > table[winner - 1].hand[pair1].num)
+                        if (table[i].hand[pair2].num > table[winner].hand[pair1].num)
                         {
-                            table[winner - 1].points = 0;
+                            table[winner].points = 0;
                             winner = i;
                             numwin--;
                         }
-                        if (table[i].hand[pair2].num < table[winner - 1].hand[pair1].num)
+                        if (table[i].hand[pair2].num < table[winner].hand[pair1].num)
                         {
                             table[i].points = 0;
                             numwin--;
@@ -697,15 +686,15 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
             case F:
                 for (int i = 0; i < j; i++)
                 {
-                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    if ((table[i].points == table[winner].points) && (table[i].name != table[winner].name))
                     {
-                            if (table[i].hand[4].num > table[winner - 1].hand[4].num)
+                            if (table[i].hand[4].num > table[winner].hand[4].num)
                             {
-                                table[winner - 1].points = 0;
+                                table[winner].points = 0;
                                 winner = i;
                                 numwin--;
                             }
-                            if (table[i].hand[4].num < table[winner - 1].hand[4].num)
+                            if (table[i].hand[4].num < table[winner].hand[4].num)
                             {
                                 table[i].points = 0;
                                 numwin--;
@@ -716,15 +705,15 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
             case S:
                 for (int i = 0; i < j; i++)
                 {
-                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    if ((table[i].points == table[winner].points) && (table[i].name != table[winner].name))
                     {
-                            if (table[i].hand[4].num > table[winner - 1].hand[4].num)
+                            if (table[i].hand[4].num > table[winner].hand[4].num)
                             {
-                                table[winner - 1].points = 0;
+                                table[winner].points = 0;
                                 winner = i;
                                 numwin--;
                             }
-                            if (table[i].hand[4].num < table[winner - 1].hand[4].num)
+                            if (table[i].hand[4].num < table[winner].hand[4].num)
                             {
                                 table[i].points = 0;
                                 numwin--;
@@ -735,10 +724,10 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
             case TK:
                 for (int i = 0; i < j; i++)
                 {
-                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    if ((table[i].points == table[winner].points) && (table[i].name != table[winner].name))
                     {
                         
-                            if ((table[winner - 1].hand[0].num == table[winner - 1].hand[1].num) && (table[winner - 1].hand[0].num == table[winner - 1].hand[2].num))
+                            if ((table[winner].hand[0].num == table[winner].hand[1].num) && (table[winner].hand[0].num == table[winner].hand[2].num))
                             {
                                 cards1 = 3;
                             }
@@ -755,27 +744,27 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
                                 tri2 = 2;
                             }
                     }
-                    if (table[i].hand[tri2].num > table[winner - 1].hand[tri1].num)
+                    if (table[i].hand[tri2].num > table[winner].hand[tri1].num)
                     {
-                        table[winner - 1].points = 0;
+                        table[winner].points = 0;
                         winner = i;
                         numwin--;
                     }
-                    if (table[i].hand[tri2].num < table[winner - 1].hand[tri1].num)
+                    if (table[i].hand[tri2].num < table[winner].hand[tri1].num)
                     {
                         table[i].points = 0;
                         numwin--;
                     }
-                    if (table[i].hand[tri2].num == table[winner - 1].hand[tri1].num)
+                    if (table[i].hand[tri2].num == table[winner].hand[tri1].num)
                     {
-                        if (table[i].hand[cards2].num > table[winner - 1].hand[cards1].num || table[i].hand[cards2 + 1].num > table[winner - 1].hand[cards1 + 1].num)
+                        if (table[i].hand[cards2].num > table[winner].hand[cards1].num || table[i].hand[cards2 + 1].num > table[winner].hand[cards1 + 1].num)
                         {
-                            table[winner - 1].points = 0;
+                            table[winner].points = 0;
                             winner = i;
                             numwin--;
                             continue;
                         }
-                        if (table[i].hand[cards2].num < table[winner - 1].hand[cards1].num || table[i].hand[cards2 + 1].num < table[winner - 1].hand[cards1 + 1].num)
+                        if (table[i].hand[cards2].num < table[winner].hand[cards1].num || table[i].hand[cards2 + 1].num < table[winner].hand[cards1 + 1].num)
                         {
                             table[i].points = 0;
                             numwin--;
@@ -787,16 +776,16 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
             case TP:
                 for (int i = 0; i < j; i++)
                 {
-                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    if ((table[i].points == table[winner].points) && (table[i].name != table[winner].name))
                     {
                         
-                            if ((table[winner - 1].hand[2].num != table[winner - 1].hand[1].num) && (table[winner - 1].hand[2].num != table[winner - 1].hand[3].num))
+                            if ((table[winner].hand[2].num != table[winner].hand[1].num) && (table[winner].hand[2].num != table[winner].hand[3].num))
                             {
                                 single1 = 2;
                                 par11 = 0;
                                 par12 = 3;
                             }
-                            else if ((table[winner - 1].hand[0].num != table[winner - 1].hand[1].num))
+                            else if ((table[winner].hand[0].num != table[winner].hand[1].num))
                             {
                                 par11 = 1;
                                 par12 = 3;
@@ -826,40 +815,40 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
                             }
                             
                     }
-                    if (table[i].hand[par21].num > table[winner - 1].hand[par11].num && table[i].hand[par21].num > table[winner - 1].hand[par12].num)
+                    if (table[i].hand[par21].num > table[winner].hand[par11].num && table[i].hand[par21].num > table[winner].hand[par12].num)
                     {
-                        table[winner - 1].points = 0;
+                        table[winner].points = 0;
                         winner = i;
                         numwin--;
                         continue;
                     }
-                    else if (table[i].hand[par22].num > table[winner - 1].hand[par11].num && table[i].hand[par22].num > table[winner - 1].hand[par12].num)
+                    else if (table[i].hand[par22].num > table[winner].hand[par11].num && table[i].hand[par22].num > table[winner].hand[par12].num)
                     {
-                        table[winner - 1].points = 0;
+                        table[winner].points = 0;
                         winner = i;
                         numwin--;
                         continue;
                     }
-                    if (table[i].hand[par21].num < table[winner - 1].hand[par11].num && table[i].hand[par21].num < table[winner - 1].hand[par12].num)
+                    if (table[i].hand[par21].num < table[winner].hand[par11].num && table[i].hand[par21].num < table[winner].hand[par12].num)
                     {
                         table[i].points = 0;
                         numwin--;
                         continue;
                     }
-                    else if (table[i].hand[par22].num < table[winner - 1].hand[par11].num && table[i].hand[par22].num < table[winner - 1].hand[par12].num)
+                    else if (table[i].hand[par22].num < table[winner].hand[par11].num && table[i].hand[par22].num < table[winner].hand[par12].num)
                     {
                         table[i].points = 0;
                         numwin--;
                         continue;
                     }
-                    if (table[i].hand[single2].num > table[winner - 1].hand[single1].num)
+                    if (table[i].hand[single2].num > table[winner].hand[single1].num)
                     {
-                        table[winner - 1].points = 0;
+                        table[winner].points = 0;
                         winner = i;
                         numwin--;
                         continue;
                     }
-                    if (table[i].hand[single2].num < table[winner - 1].hand[single1].num)
+                    if (table[i].hand[single2].num < table[winner].hand[single1].num)
                     {
                         table[i].points = 0;
                         numwin--;
@@ -870,11 +859,11 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
             case OP:
                 for (int i = 0; i < j; i++)
                 {
-                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    if ((table[i].points == table[winner].points) && (table[i].name != table[winner].name))
                     {
                         for (int x = 0; x < 5; x++)
                         {
-                            if (table[winner - 1].hand[x].num == table[winner - 1].hand[x+1].num)
+                            if (table[winner].hand[x].num == table[winner].hand[x+1].num)
                             {
                                 par1 = x;
                             }
@@ -884,24 +873,24 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
                             }   
                         }
                     }
-                    if (table[i].hand[par2].num > table[winner - 1].hand[par1].num)
+                    if (table[i].hand[par2].num > table[winner].hand[par1].num)
                     {
-                        table[winner - 1].points = 0;
+                        table[winner].points = 0;
                         winner = i;
                         numwin--;
                     }
-                    if (table[i].hand[par2].num < table[winner - 1].hand[par1].num)
+                    if (table[i].hand[par2].num < table[winner].hand[par1].num)
                     {
                         table[i].points = 0;
                         numwin--;
                     }
-                    if (table[i].hand[par2].num == table[winner - 1].hand[par1].num)
+                    if (table[i].hand[par2].num == table[winner].hand[par1].num)
                     {
                         int maior1 = 0;
                         int maior2 = 0;
                         for (int x = 0; x < 5; x++)
                         {
-                            if (table[winner - 1].hand[x].num > table[winner - 1].hand[maior1].num && table[winner - 1].hand[x].num != table[winner - 1].hand[par1].num)
+                            if (table[winner].hand[x].num > table[winner].hand[maior1].num && table[winner].hand[x].num != table[winner].hand[par1].num)
                             {
                                 maior1 = x;
                             }
@@ -913,15 +902,15 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
                                 maior2 = x;
                             }
                         }
-                        if (table[i].hand[maior2].num > table[winner - 1].hand[maior1].num)
+                        if (table[i].hand[maior2].num > table[winner].hand[maior1].num)
                         {
-                            table[winner - 1].points = 0;
+                            table[winner].points = 0;
                             winner = i;
                             numwin--;
                         }
-                        if (table[i].hand[maior2].num < table[winner - 1].hand[maior1].num)
+                        if (table[i].hand[maior2].num < table[winner].hand[maior1].num)
                         {
-                            table[winner - 1].points = 0;
+                            table[winner].points = 0;
                             winner = i;
                             numwin--;
                         }
@@ -931,17 +920,17 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
             default:
                 for (int i = 0; i < j; i++)
                 {
-                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    if ((table[i].points == table[winner].points) && (table[i].name != table[winner].name))
                     {
                         for (int x = 0; x < 5; x++)
                         {
-                            if (table[i].hand[x].num > table[winner - 1].hand[x].num)
+                            if (table[i].hand[x].num > table[winner].hand[x].num)
                             {
-                                table[winner - 1].points = 0;
+                                table[winner].points = 0;
                                 winner = i;
                                 numwin--;
                             }
-                            if (table[i].hand[x].num < table[winner - 1].hand[x].num)
+                            if (table[i].hand[x].num < table[winner].hand[x].num)
                             {
                                 table[i].points = 0;
                                 numwin--;
@@ -955,21 +944,21 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
 
     if (numwin <= 1)
     {
-        outFile << 1 << " " << *pote << " " << Classification(table[winner - 1].points);
-        outFile << table[winner - 1].name << endl;
-        table[winner-1].money += *pote;
+        outFile << 1 << " " << *pote << " " << Classification(table[winner].points);
+        outFile << table[winner].name << endl;
+        table[winner].money += *pote;
     }
     if (numwin > 1)
     {
         int gain = (*pote/numwin);
-        outFile << numwin << " " << gain << " " << Classification(table[winner - 1].points);
-        outFile << table[winner - 1].name << endl;
-        table[winner-1].money += gain;
+        outFile << numwin << " " << gain << " " << Classification(table[winner].points);
+        outFile << table[winner].name;
+        table[winner].money += gain;
         for (int x = 0; x < j; x++)
         {
-            if ((table[x].points == table[winner - 1].points) && (table[x].name != table[winner - 1].name))
+            if ((table[x].points == table[winner].points) && (table[x].name != table[winner].name))
             {
-                outFile << table[x].name;
+                outFile << table[x].name << endl;
                 table[x].money += gain;
             }
         }
@@ -1111,6 +1100,7 @@ int Ratehand(Card arr[])
         if (i == 12 && vec[i] == vec[i-1])
         {
             counter++;
+            continue;
         }
         if (vec[i] == vec[i+1])
         {
@@ -1136,16 +1126,16 @@ int Ratehand(Card arr[])
             two++;
         }
     }
-    if ((P == SIZEH || E == SIZEH || C == SIZEH || O == SIZEH) && counter > 0)
+    if ((P == SIZEH || E == SIZEH || C == SIZEH || O == SIZEH) && counter == 4)
     {
-        if (vec[9] == 1)
+        if (vec[0] == 1)
         {
             return RSF;
         }
-        else
-        {
-            return SF;
-        }
+    }
+    if ((P == SIZEH || E == SIZEH || C == SIZEH || O == SIZEH) && counter == 5)
+    {
+        return SF;
     }
     if ((P == SIZEH || E == SIZEH || C == SIZEH || O == SIZEH) && counter == 0)
     {
@@ -1159,7 +1149,7 @@ int Ratehand(Card arr[])
     {
         return FH;
     }
-    if (!(P == SIZEH || E == SIZEH || C == SIZEH || O == SIZEH) && counter >= SIZEH)
+    if (!(P == SIZEH || E == SIZEH || C == SIZEH || O == SIZEH) && counter > 4)
     {
         return S;
     }
