@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun May 29 20:08:57 2022
+# Make data base, printed on Tue May 31 18:52:21 2022
 
 # Variables
 
@@ -29,7 +29,7 @@ VSCODE_LOG_NATIVE = false
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /mnt/c/Users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator
+CURDIR := /mnt/c/users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator
 # makefile
 SHELL = /bin/sh
 # makefile (from 'Makefile', line 4)
@@ -49,15 +49,15 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
-VSCODE_CWD = /mnt/c/Users/chrys/AppData/Local/Programs/Microsoft VS Code
+VSCODE_CWD = /mnt/c/users/chrys/AppData/Local/Programs/Microsoft VS Code
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/chrys/.vscode-server/bin/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5/bin/remote-cli:/mnt/c/Program Files (x86)/NSIS/Bin:/mnt/c/Program Files/Java/jdk1.8.0_333/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/MinGW/bin:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn/:/mnt/c/Program Files/Git/cmd:/mnt/c/wget:/mnt/c/Program Files/erl-24.2.1/bin:/mnt/c/Program Files (x86)/Elixir/bin:/mnt/c/Users/chrys/.mix/escripts:/mnt/c/Program Files/Microsoft SQL Server/150/Tools/Binn/:/mnt/c/msys64/mingw64/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Users/chrys/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/chrys/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/chrys/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/chrys/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/wget:/mnt/c/Users/chrys/AppData/Local/Programs/Julia-1.7.1/bin:/snap/bin
+PATH = /home/chrys/.vscode-server/bin/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5/bin/remote-cli:/mnt/c/Program Files (x86)/NSIS/Bin:/mnt/c/Program Files/Java/jdk1.8.0_333/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/Eclipse Adoptium/jdk-17.0.3.7-hotspot/bin:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/MinGW/bin:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn/:/mnt/c/Program Files/Git/cmd:/mnt/c/wget:/mnt/c/Program Files/erl-24.2.1/bin:/mnt/c/Program Files (x86)/Elixir/bin:/mnt/c/Users/chrys/.mix/escripts:/mnt/c/Program Files/Microsoft SQL Server/150/Tools/Binn/:/mnt/c/msys64/mingw64/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Users/chrys/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/chrys/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/chrys/AppData/Local/Microsoft/WindowsApps:/mnt/c/wget:/mnt/c/Users/chrys/AppData/Local/Programs/Julia-1.7.1/bin:/mnt/c/Users/chrys/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-016a7446-ff17-4361-9e6a-a94cfda4248a.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-4158ca37-1b7f-46bc-8a08-4c2eb883b05c.sock
 # makefile (from 'Makefile', line 7)
 LIB := lib
 # default
@@ -69,7 +69,7 @@ LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /mnt/c/Users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator
+PWD = /mnt/c/users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator
 # default
 .LOADED := 
 # environment
@@ -81,7 +81,7 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 LOGNAME = chrys
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -159,7 +159,7 @@ VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 # environment
 WSL_DISTRO_NAME = Ubuntu
 # variable set hash-table stats:
-# Load=74/1024=7%, Rehash=0, Collisions=5/104=5%
+# Load=74/1024=7%, Rehash=0, Collisions=6/112=5%
 
 # Pattern-specific Variable Values
 
@@ -167,10 +167,10 @@ WSL_DISTRO_NAME = Ubuntu
 
 # Directories
 
-# . (device 14, inode 4503599627804108): 10 files, no impossibilities.
-# src (device 14, inode 2251799814161102): 7 files, no impossibilities.
+# . (device 14, inode 4503599627804108): 11 files, no impossibilities.
+# src (device 14, inode 2251799814161102): 8 files, no impossibilities.
 
-# 17 files, no impossibilities in 2 directories.
+# 19 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -183,14 +183,22 @@ all: bin/main
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
 
 # Not a target:
 src/funcoes.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-29 18:04:32.6015993
+#  Last modified 2022-05-31 17:41:32.2944011
 #  File has been updated.
 #  Successfully updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 Makefile:
@@ -230,7 +238,7 @@ clean:
 # Not a target:
 src/main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-29 19:04:16.9011708
+#  Last modified 2022-05-31 17:41:37.7638524
 #  File has been updated.
 #  Successfully updated.
 
@@ -241,11 +249,37 @@ src/card.cpp:
 #  File has been updated.
 #  Successfully updated.
 
-bin/main: src/funcoes.cpp src/deck.cpp src/player.cpp src/card.cpp src/main.cpp
-#  Implicit rule search has not been done.
-#  Last modified 2022-05-29 19:04:24.8001765
+# Not a target:
+src/poker.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-31 17:53:58.2022939
 #  File has been updated.
 #  Successfully updated.
+
+bin/main: src/funcoes.cpp src/deck.cpp src/player.cpp src/poker.cpp src/card.cpp src/main.cpp
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  Last modified 2022-05-31 17:34:26.3613188
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := bin/main
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := src/funcoes.cpp src/deck.cpp src/player.cpp src/poker.cpp src/card.cpp src/main.cpp
+# automatic
+# | := 
+# automatic
+# < := src/funcoes.cpp
+# automatic
+# ^ := src/funcoes.cpp src/deck.cpp src/player.cpp src/poker.cpp src/card.cpp src/main.cpp
+# automatic
+# ? := src/funcoes.cpp src/poker.cpp src/main.cpp
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/18=11%
 #  recipe to execute (from 'Makefile', line 20):
 	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
 
@@ -257,19 +291,19 @@ src/player.cpp:
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=12/1024=1%, Rehash=0, Collisions=0/33=0%
+# Load=13/1024=1%, Rehash=0, Collisions=0/36=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 28 / storage = 266 B / avg = 9 B
-# current buf: size = 8162 B / used = 266 B / count = 28 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 31 / storage = 300 B / avg = 9 B
+# current buf: size = 8162 B / used = 300 B / count = 31 / avg = 9 B
 
-# strcache performance: lookups = 43 / hit rate = 34%
+# strcache performance: lookups = 47 / hit rate = 34%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=2/43=5%
-# Finished Make data base on Sun May 29 20:08:57 2022
+# Load=31/8192=0%, Rehash=0, Collisions=2/47=4%
+# Finished Make data base on Tue May 31 18:52:21 2022
 
  

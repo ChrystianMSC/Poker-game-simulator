@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 #include <fstream>
 #include <regex.h>
 #include "player.h"
@@ -6,14 +7,16 @@
 
 int main() {
 
-    int n = 0, di = 0, j = 0, pin = 0, pote = 0, bet = 0;
-    int origin = 0;
+    int n = 0, di = 0, j = 0, pin = 0, pote = 0, bet = 0, origin = 0;
     char name [20];
+
     Player nullplayer;
     Player table[SIZET];
     Player semitable[SIZET];
+    
     FILE *inFile;
-
+    ofstream outFile;
+    outFile.open("saida.txt");
     inFile = fopen("entrada.txt", "r");
 
     if (!inFile) {
@@ -66,13 +69,13 @@ int main() {
             
             TableSet(inFile, table, name, bet, di, pin, &pote, j);
             
-            int inv = InvalidRound(table, pin, di, j);
+            int inv = InvalidRound(table, pin, di, j, outFile);
             if (inv == 1)
             {
                 exit(1);
             }
 
-            SeeWhoWinF(table, &pote, j);
+            SeeWhoWinF(table, &pote, j, outFile);
             
             for (int x = 0; x < SIZET; x++)
             {
@@ -142,11 +145,11 @@ int main() {
                 {
                     table[x] = auxtable[x];
                 }
-                cout << 0 << " " << 0 << " " << "I" << endl;
+                outFile << 0 << " " << 0 << " " << "I" << endl;
                 continue;
             }
 
-            RoundWinner(origin, table, semitable, &pote, j);
+            RoundWinner(origin, table, semitable, &pote, j, outFile);
 
             for (int x = 0; x < SIZET; x++)
             {
@@ -162,16 +165,17 @@ int main() {
 
     bubbleSortplayer(table, sizeof(table)/sizeof(table[0]));
 
-    cout << endl;
-    cout << "####";
+    outFile << endl;
+    outFile << "####";
 
     for (int i = 0; i < origin; i++)
     {
-        cout << table[i].name << " " << table[i].money;
+        outFile << table[i].name << " " << table[i].money;
     }
 
-    cout << endl;
+    outFile << endl;
 
+    outFile.close();
     fclose(inFile);
 
     return 0;

@@ -1,5 +1,6 @@
 #include "player.h"
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -22,10 +23,10 @@ string Classification(int n);
 int Ratehand(Card arr[]);
 void bubbleSort(Card arr[], int n);
 void bubbleSortplayer(Player arr[], int n);
-int InvalidRound(Player table[], int pin, int di, int j);
+int InvalidRound(Player table[], int pin, int di, int j, ofstream& outFile);
 void TableSet(FILE * inFile, Player table[], char name[], int bet, int di, int pin , int *pote, int j);
-void SeeWhoWinF(Player table[], int *pote, int j);
+void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile);
 void RoundSet(FILE *inFile, int bet, Player *p, int *pote, int *pin, int di);
-void RoundWinner(int origin, Player table[], Player semitable[], int *pote, int j);
+void RoundWinner(int origin, Player table[], Player semitable[], int *pote, int j, ofstream& outFile);
 
 #endif

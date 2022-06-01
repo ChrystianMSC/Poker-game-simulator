@@ -1,6 +1,7 @@
-#include "funcoes.h"
+#include "../include/funcoes.h"
 
-void RoundWinner(int origin, Player table[], Player semitable[], int *pote, int j)
+
+void RoundWinner(int origin, Player table[], Player semitable[], int *pote, int j, ofstream& outFile)
 {
     int winner = 0;
     int numwin = 1;
@@ -26,10 +27,422 @@ void RoundWinner(int origin, Player table[], Player semitable[], int *pote, int 
             numwin++;
         }
     }
-    if (numwin == 1)
+
+    if (numwin > 1)
     {
-        cout << numwin << " " << *pote << " " << Classification(semitable[winner].points);
-        cout << semitable[winner].name << endl;
+        int quad1 = 0;
+        int quad2 = 0;
+        int card1 = 0;
+        int card2 = 0;
+
+        int pair1 = 0;
+        int pair2 = 0;
+
+        int tri1 = 0;
+        int tri2 = 0;
+        int cards1 = 0;
+        int cards2 = 0;
+
+        int par11 = 0;
+        int par12 = 0;
+        int par21 = 0;
+        int par22 = 0;
+        int single1 = 0;
+        int single2 = 0;
+
+        int par1 = 0;
+        int par2 = 0;
+
+        switch (semitable[winner].points)
+        {
+            case RSF:
+                break;
+            case SF:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((semitable[i].points == semitable[winner].points) && (semitable[i].name != semitable[winner].name))
+                    {
+                            if (semitable[i].hand[4].num > semitable[winner].hand[4].num)
+                            {
+                                semitable[winner].points = 0;
+                                winner = i;
+                                numwin--;
+                            }
+                            if (semitable[i].hand[4].num < semitable[winner].hand[4].num)
+                            {
+                                semitable[i].points = 0;
+                                numwin--;
+                            }
+                    }
+                }
+                break;
+            case FK:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((semitable[i].points == semitable[winner].points) && (semitable[i].name != semitable[winner].name))
+                    {
+                        int x = 0;
+                        if (x == 0 && semitable[winner].hand[x+1].num != semitable[winner].hand[x].num)
+                        {
+                            quad1 = 1; 
+                        }
+                        else
+                        {
+                            card1 = 4;
+                        }
+                        if (x == 0 && semitable[i].hand[x+1].num != semitable[i].hand[x].num)
+                        {
+                            quad2 = 1;
+                        }
+                        else
+                        {
+                            card2 = 4;
+                        }
+                    }
+                    if (semitable[i].hand[quad2].num > semitable[winner].hand[quad1].num)
+                    {
+                        semitable[winner].points = 0;
+                        winner = i;
+                        numwin--;
+                    }
+                    if (semitable[i].hand[quad2].num < semitable[winner].hand[quad1].num)
+                    {
+                        semitable[i].points = 0;
+                        numwin--;
+                    }
+                    if (semitable[i].hand[quad2].num == semitable[winner].hand[quad1].num)
+                    {
+                        if (semitable[i].hand[card2].num > semitable[winner].hand[card1].num)
+                        {
+                            semitable[winner].points = 0;
+                            winner = i;
+                            numwin--;
+                        }
+                        if (semitable[i].hand[card2].num < semitable[winner].hand[card1].num)
+                        {
+                            semitable[i].points = 0;
+                            numwin--;
+                        }
+                        
+                    }
+                }
+                break;
+            case FH:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((semitable[i].points == semitable[winner].points) && (semitable[i].name != semitable[winner].name))
+                    {
+                        
+                            if ((semitable[winner].hand[0].num == semitable[winner].hand[1].num) && (semitable[winner].hand[0].num == semitable[winner].hand[2].num))
+                            {
+                                pair1 = 3;
+                            }
+                            else
+                            {
+                                tri1 = 2;
+                            }
+                            if ((semitable[i].hand[0].num == semitable[i].hand[1].num) && (semitable[i].hand[0].num == semitable[i].hand[2].num))
+                            {
+                                pair2 = 3;
+                            }
+                            else
+                            {
+                                tri2 = 2;
+                            }
+                    }
+                    if (semitable[i].hand[tri2].num > semitable[winner].hand[tri1].num)
+                    {
+                        semitable[winner].points = 0;
+                        winner = i;
+                        numwin--;
+                    }
+                    if (semitable[i].hand[tri2].num < semitable[winner].hand[tri1].num)
+                    {
+                        semitable[i].points = 0;
+                        numwin--;
+                    }
+                    if (semitable[i].hand[tri2].num == semitable[winner].hand[tri1].num)
+                    {
+                        if (semitable[i].hand[pair2].num > semitable[winner].hand[pair1].num)
+                        {
+                            semitable[winner].points = 0;
+                            winner = i;
+                            numwin--;
+                        }
+                        if (semitable[i].hand[pair2].num < semitable[winner].hand[pair1].num)
+                        {
+                            semitable[i].points = 0;
+                            numwin--;
+                        }
+                        
+                    }
+                }
+                break;
+            case F:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((semitable[i].points == semitable[winner].points) && (semitable[i].name != semitable[winner].name))
+                    {
+                            if (semitable[i].hand[4].num > semitable[winner].hand[4].num)
+                            {
+                                semitable[winner].points = 0;
+                                winner = i;
+                                numwin--;
+                            }
+                            if (semitable[i].hand[4].num < semitable[winner].hand[4].num)
+                            {
+                                semitable[i].points = 0;
+                                numwin--;
+                            }
+                    }
+                }
+                break;
+            case S:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((semitable[i].points == semitable[winner].points) && (semitable[i].name != semitable[winner].name))
+                    {
+                            if (semitable[i].hand[4].num > semitable[winner].hand[4].num)
+                            {
+                                semitable[winner].points = 0;
+                                winner = i;
+                                numwin--;
+                            }
+                            if (semitable[i].hand[4].num < semitable[winner].hand[4].num)
+                            {
+                                semitable[i].points = 0;
+                                numwin--;
+                            }
+                    }
+                }
+                break;
+            case TK:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((semitable[i].points == semitable[winner].points) && (semitable[i].name != semitable[winner].name))
+                    {
+                        
+                            if ((semitable[winner].hand[0].num == semitable[winner].hand[1].num) && (semitable[winner].hand[0].num == semitable[winner].hand[2].num))
+                            {
+                                cards1 = 3;
+                            }
+                            else
+                            {
+                                tri1 = 2;
+                            }
+                            if ((semitable[i].hand[0].num == semitable[i].hand[1].num) && (semitable[i].hand[0].num == semitable[i].hand[2].num))
+                            {
+                                cards2 = 3;
+                            }
+                            else
+                            {
+                                tri2 = 2;
+                            }
+                    }
+                    if (semitable[i].hand[tri2].num > semitable[winner].hand[tri1].num)
+                    {
+                        semitable[winner].points = 0;
+                        winner = i;
+                        numwin--;
+                    }
+                    if (semitable[i].hand[tri2].num < semitable[winner].hand[tri1].num)
+                    {
+                        semitable[i].points = 0;
+                        numwin--;
+                    }
+                    if (semitable[i].hand[tri2].num == semitable[winner].hand[tri1].num)
+                    {
+                        if (semitable[i].hand[cards2].num > semitable[winner].hand[cards1].num || semitable[i].hand[cards2 + 1].num > semitable[winner].hand[cards1 + 1].num)
+                        {
+                            semitable[winner].points = 0;
+                            winner = i;
+                            numwin--;
+                            continue;
+                        }
+                        if (semitable[i].hand[cards2].num < semitable[winner].hand[cards1].num || semitable[i].hand[cards2 + 1].num < semitable[winner].hand[cards1 + 1].num)
+                        {
+                            semitable[i].points = 0;
+                            numwin--;
+                            continue;
+                        }
+                    }
+                }
+                break;
+            case TP:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((semitable[i].points == semitable[winner].points) && (semitable[i].name != semitable[winner].name))
+                    {
+                        
+                            if ((semitable[winner].hand[2].num != semitable[winner].hand[1].num) && (semitable[winner].hand[2].num != semitable[winner].hand[3].num))
+                            {
+                                single1 = 2;
+                                par11 = 0;
+                                par12 = 3;
+                            }
+                            else if ((semitable[winner].hand[0].num != semitable[winner].hand[1].num))
+                            {
+                                par11 = 1;
+                                par12 = 3;
+                            }
+                            else
+                            {
+                                single1 = 4;
+                                par11 = 0;
+                                par12 = 2;
+                            }
+                            if ((semitable[i].hand[2].num != semitable[i].hand[1].num) && (semitable[i].hand[2].num != semitable[i].hand[3].num))
+                            {
+                                single2 = 2;
+                                par11 = 0;
+                                par12 = 3;
+                            }
+                            else if ((semitable[i].hand[0].num != semitable[i].hand[1].num))
+                            {
+                                par11 = 1;
+                                par12 = 3;
+                            }
+                            else
+                            {
+                                single2 = 4;
+                                par11 = 0;
+                                par12 = 2;
+                            }
+                            
+                    }
+                    if (semitable[i].hand[par21].num > semitable[winner].hand[par11].num && semitable[i].hand[par21].num > semitable[winner].hand[par12].num)
+                    {
+                        semitable[winner].points = 0;
+                        winner = i;
+                        numwin--;
+                        continue;
+                    }
+                    else if (semitable[i].hand[par22].num > semitable[winner].hand[par11].num && semitable[i].hand[par22].num > semitable[winner].hand[par12].num)
+                    {
+                        semitable[winner].points = 0;
+                        winner = i;
+                        numwin--;
+                        continue;
+                    }
+                    if (semitable[i].hand[par21].num < semitable[winner].hand[par11].num && semitable[i].hand[par21].num < semitable[winner].hand[par12].num)
+                    {
+                        semitable[i].points = 0;
+                        numwin--;
+                        continue;
+                    }
+                    else if (semitable[i].hand[par22].num < semitable[winner].hand[par11].num && semitable[i].hand[par22].num < semitable[winner].hand[par12].num)
+                    {
+                        semitable[i].points = 0;
+                        numwin--;
+                        continue;
+                    }
+                    if (semitable[i].hand[single2].num > semitable[winner].hand[single1].num)
+                    {
+                        semitable[winner].points = 0;
+                        winner = i;
+                        numwin--;
+                        continue;
+                    }
+                    if (semitable[i].hand[single2].num < semitable[winner].hand[single1].num)
+                    {
+                        semitable[i].points = 0;
+                        numwin--;
+                        continue;
+                    }
+                }
+                break;
+            case OP:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((semitable[i].points == semitable[winner].points) && (semitable[i].name != semitable[winner].name))
+                    {
+                        for (int x = 0; x < 5; x++)
+                        {
+                            if (semitable[winner].hand[x].num == semitable[winner].hand[x+1].num)
+                            {
+                                par1 = x;
+                            }
+                            if (semitable[i].hand[x].num == semitable[i].hand[x+1].num)
+                            {
+                                par2 = x;
+                            }   
+                        }
+                    }
+                    if (semitable[i].hand[par2].num > semitable[winner].hand[par1].num)
+                    {
+                        semitable[winner].points = 0;
+                        winner = i;
+                        numwin--;
+                    }
+                    if (semitable[i].hand[par2].num < semitable[winner].hand[par1].num)
+                    {
+                        semitable[i].points = 0;
+                        numwin--;
+                    }
+                    if (semitable[i].hand[par2].num == semitable[winner].hand[par1].num)
+                    {
+                        int maior1 = 0;
+                        int maior2 = 0;
+                        for (int x = 0; x < 5; x++)
+                        {
+                            if (semitable[winner].hand[x].num > semitable[winner].hand[maior1].num && semitable[winner].hand[x].num != semitable[winner].hand[par1].num)
+                            {
+                                maior1 = x;
+                            }
+                        }
+                        for (int x = 0; x < 5; x++)
+                        {
+                            if (semitable[i].hand[x].num > semitable[i].hand[maior1].num && semitable[i].hand[x].num != semitable[i].hand[par2].num)
+                            {
+                                maior2 = x;
+                            }
+                        }
+                        if (semitable[i].hand[maior2].num > semitable[winner].hand[maior1].num)
+                        {
+                            semitable[winner].points = 0;
+                            winner = i;
+                            numwin--;
+                        }
+                        if (semitable[i].hand[maior2].num < semitable[winner].hand[maior1].num)
+                        {
+                            semitable[winner].points = 0;
+                            winner = i;
+                            numwin--;
+                        }
+                    }
+                }
+                break;
+            default:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((semitable[i].points == semitable[winner].points) && (semitable[i].name != semitable[winner].name))
+                    {
+                        for (int x = 0; x < 5; x++)
+                        {
+                            if (semitable[i].hand[x].num > semitable[winner].hand[x].num)
+                            {
+                                semitable[winner].points = 0;
+                                winner = i;
+                                numwin--;
+                            }
+                            if (semitable[i].hand[x].num < semitable[winner].hand[x].num)
+                            {
+                                semitable[i].points = 0;
+                                numwin--;
+                            }
+                        }
+                    }
+                }
+                break;
+        }
+    
+    }
+
+
+    if (numwin <= 1)
+    {
+        outFile << 1 << " " << *pote << " " << Classification(semitable[winner].points);
+        outFile << semitable[winner].name << endl;
         semitable[winner].money += *pote;
         for (int x = 0; x < origin; x++)
         {
@@ -43,8 +456,8 @@ void RoundWinner(int origin, Player table[], Player semitable[], int *pote, int 
     if (numwin > 1)
     {
         int gain = (*pote/numwin);
-        cout << numwin << " " << gain << " " << Classification(semitable[winner].points);
-        cout << semitable[winner].name;
+        outFile << numwin << " " << gain << " " << Classification(semitable[winner].points);
+        outFile << semitable[winner].name;
         semitable[winner].money += gain;
         for (int x = 0; x < origin; x++)
         {
@@ -57,7 +470,7 @@ void RoundWinner(int origin, Player table[], Player semitable[], int *pote, int 
         {
             if ((semitable[x].points == semitable[winner].points) && (semitable[x].name != semitable[winner].name))
             {
-                cout << semitable[x].name;
+                outFile << semitable[x].name;
                 semitable[x].money += gain;
                 for (int z = 0; z < origin; z++)
                 {
@@ -68,9 +481,11 @@ void RoundWinner(int origin, Player table[], Player semitable[], int *pote, int 
                 }
             }
         }
-        cout << endl;
+        outFile << endl;
     }
 }
+
+
 
 void RoundSet(FILE *inFile, int bet, Player *p, int *pote, int *pin, int di)
 {
@@ -101,7 +516,7 @@ void RoundSet(FILE *inFile, int bet, Player *p, int *pote, int *pin, int di)
 }
 
 
-void SeeWhoWinF(Player table[], int *pote, int j)
+void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
 {
     int winner = 0;
     int numwin = 1;
@@ -128,28 +543,440 @@ void SeeWhoWinF(Player table[], int *pote, int j)
             numwin++;
         }
     }
-    if (numwin == 1)
+
+    if (numwin > 1)
     {
-        cout << numwin << " " << *pote << " " << Classification(table[winner - 1].points);
-        cout << table[winner - 1].name << endl;
+        int quad1 = 0;
+        int quad2 = 0;
+        int card1 = 0;
+        int card2 = 0;
+
+        int pair1 = 0;
+        int pair2 = 0;
+
+        int tri1 = 0;
+        int tri2 = 0;
+        int cards1 = 0;
+        int cards2 = 0;
+
+        int par11 = 0;
+        int par12 = 0;
+        int par21 = 0;
+        int par22 = 0;
+        int single1 = 0;
+        int single2 = 0;
+
+        int par1 = 0;
+        int par2 = 0;
+
+        switch (table[winner - 1].points)
+        {
+            case RSF:
+                break;
+            case SF:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    {
+                            if (table[i].hand[4].num > table[winner - 1].hand[4].num)
+                            {
+                                table[winner - 1].points = 0;
+                                winner = i;
+                                numwin--;
+                            }
+                            if (table[i].hand[4].num < table[winner - 1].hand[4].num)
+                            {
+                                table[i].points = 0;
+                                numwin--;
+                            }
+                    }
+                }
+                break;
+            case FK:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    {
+                        int x = 0;
+                        if (x == 0 && table[winner - 1].hand[x+1].num != table[winner - 1].hand[x].num)
+                        {
+                            quad1 = 1; 
+                        }
+                        else
+                        {
+                            card1 = 4;
+                        }
+                        if (x == 0 && table[i].hand[x+1].num != table[i].hand[x].num)
+                        {
+                            quad2 = 1;
+                        }
+                        else
+                        {
+                            card2 = 4;
+                        }
+                    }
+                    if (table[i].hand[quad2].num > table[winner - 1].hand[quad1].num)
+                    {
+                        table[winner - 1].points = 0;
+                        winner = i;
+                        numwin--;
+                    }
+                    if (table[i].hand[quad2].num < table[winner - 1].hand[quad1].num)
+                    {
+                        table[i].points = 0;
+                        numwin--;
+                    }
+                    if (table[i].hand[quad2].num == table[winner - 1].hand[quad1].num)
+                    {
+                        if (table[i].hand[card2].num > table[winner - 1].hand[card1].num)
+                        {
+                            table[winner - 1].points = 0;
+                            winner = i;
+                            numwin--;
+                        }
+                        if (table[i].hand[card2].num < table[winner - 1].hand[card1].num)
+                        {
+                            table[i].points = 0;
+                            numwin--;
+                        }
+                        
+                    }
+                }
+                break;
+            case FH:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    {
+                        
+                            if ((table[winner - 1].hand[0].num == table[winner - 1].hand[1].num) && (table[winner - 1].hand[0].num == table[winner - 1].hand[2].num))
+                            {
+                                pair1 = 3;
+                            }
+                            else
+                            {
+                                tri1 = 2;
+                            }
+                            if ((table[i].hand[0].num == table[i].hand[1].num) && (table[i].hand[0].num == table[i].hand[2].num))
+                            {
+                                pair2 = 3;
+                            }
+                            else
+                            {
+                                tri2 = 2;
+                            }
+                    }
+                    if (table[i].hand[tri2].num > table[winner - 1].hand[tri1].num)
+                    {
+                        table[winner - 1].points = 0;
+                        winner = i;
+                        numwin--;
+                    }
+                    if (table[i].hand[tri2].num < table[winner - 1].hand[tri1].num)
+                    {
+                        table[i].points = 0;
+                        numwin--;
+                    }
+                    if (table[i].hand[tri2].num == table[winner - 1].hand[tri1].num)
+                    {
+                        if (table[i].hand[pair2].num > table[winner - 1].hand[pair1].num)
+                        {
+                            table[winner - 1].points = 0;
+                            winner = i;
+                            numwin--;
+                        }
+                        if (table[i].hand[pair2].num < table[winner - 1].hand[pair1].num)
+                        {
+                            table[i].points = 0;
+                            numwin--;
+                        }
+                        
+                    }
+                }
+                break;
+            case F:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    {
+                            if (table[i].hand[4].num > table[winner - 1].hand[4].num)
+                            {
+                                table[winner - 1].points = 0;
+                                winner = i;
+                                numwin--;
+                            }
+                            if (table[i].hand[4].num < table[winner - 1].hand[4].num)
+                            {
+                                table[i].points = 0;
+                                numwin--;
+                            }
+                    }
+                }
+                break;
+            case S:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    {
+                            if (table[i].hand[4].num > table[winner - 1].hand[4].num)
+                            {
+                                table[winner - 1].points = 0;
+                                winner = i;
+                                numwin--;
+                            }
+                            if (table[i].hand[4].num < table[winner - 1].hand[4].num)
+                            {
+                                table[i].points = 0;
+                                numwin--;
+                            }
+                    }
+                }
+                break;
+            case TK:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    {
+                        
+                            if ((table[winner - 1].hand[0].num == table[winner - 1].hand[1].num) && (table[winner - 1].hand[0].num == table[winner - 1].hand[2].num))
+                            {
+                                cards1 = 3;
+                            }
+                            else
+                            {
+                                tri1 = 2;
+                            }
+                            if ((table[i].hand[0].num == table[i].hand[1].num) && (table[i].hand[0].num == table[i].hand[2].num))
+                            {
+                                cards2 = 3;
+                            }
+                            else
+                            {
+                                tri2 = 2;
+                            }
+                    }
+                    if (table[i].hand[tri2].num > table[winner - 1].hand[tri1].num)
+                    {
+                        table[winner - 1].points = 0;
+                        winner = i;
+                        numwin--;
+                    }
+                    if (table[i].hand[tri2].num < table[winner - 1].hand[tri1].num)
+                    {
+                        table[i].points = 0;
+                        numwin--;
+                    }
+                    if (table[i].hand[tri2].num == table[winner - 1].hand[tri1].num)
+                    {
+                        if (table[i].hand[cards2].num > table[winner - 1].hand[cards1].num || table[i].hand[cards2 + 1].num > table[winner - 1].hand[cards1 + 1].num)
+                        {
+                            table[winner - 1].points = 0;
+                            winner = i;
+                            numwin--;
+                            continue;
+                        }
+                        if (table[i].hand[cards2].num < table[winner - 1].hand[cards1].num || table[i].hand[cards2 + 1].num < table[winner - 1].hand[cards1 + 1].num)
+                        {
+                            table[i].points = 0;
+                            numwin--;
+                            continue;
+                        }
+                    }
+                }
+                break;
+            case TP:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    {
+                        
+                            if ((table[winner - 1].hand[2].num != table[winner - 1].hand[1].num) && (table[winner - 1].hand[2].num != table[winner - 1].hand[3].num))
+                            {
+                                single1 = 2;
+                                par11 = 0;
+                                par12 = 3;
+                            }
+                            else if ((table[winner - 1].hand[0].num != table[winner - 1].hand[1].num))
+                            {
+                                par11 = 1;
+                                par12 = 3;
+                            }
+                            else
+                            {
+                                single1 = 4;
+                                par11 = 0;
+                                par12 = 2;
+                            }
+                            if ((table[i].hand[2].num != table[i].hand[1].num) && (table[i].hand[2].num != table[i].hand[3].num))
+                            {
+                                single2 = 2;
+                                par11 = 0;
+                                par12 = 3;
+                            }
+                            else if ((table[i].hand[0].num != table[i].hand[1].num))
+                            {
+                                par11 = 1;
+                                par12 = 3;
+                            }
+                            else
+                            {
+                                single2 = 4;
+                                par11 = 0;
+                                par12 = 2;
+                            }
+                            
+                    }
+                    if (table[i].hand[par21].num > table[winner - 1].hand[par11].num && table[i].hand[par21].num > table[winner - 1].hand[par12].num)
+                    {
+                        table[winner - 1].points = 0;
+                        winner = i;
+                        numwin--;
+                        continue;
+                    }
+                    else if (table[i].hand[par22].num > table[winner - 1].hand[par11].num && table[i].hand[par22].num > table[winner - 1].hand[par12].num)
+                    {
+                        table[winner - 1].points = 0;
+                        winner = i;
+                        numwin--;
+                        continue;
+                    }
+                    if (table[i].hand[par21].num < table[winner - 1].hand[par11].num && table[i].hand[par21].num < table[winner - 1].hand[par12].num)
+                    {
+                        table[i].points = 0;
+                        numwin--;
+                        continue;
+                    }
+                    else if (table[i].hand[par22].num < table[winner - 1].hand[par11].num && table[i].hand[par22].num < table[winner - 1].hand[par12].num)
+                    {
+                        table[i].points = 0;
+                        numwin--;
+                        continue;
+                    }
+                    if (table[i].hand[single2].num > table[winner - 1].hand[single1].num)
+                    {
+                        table[winner - 1].points = 0;
+                        winner = i;
+                        numwin--;
+                        continue;
+                    }
+                    if (table[i].hand[single2].num < table[winner - 1].hand[single1].num)
+                    {
+                        table[i].points = 0;
+                        numwin--;
+                        continue;
+                    }
+                }
+                break;
+            case OP:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    {
+                        for (int x = 0; x < 5; x++)
+                        {
+                            if (table[winner - 1].hand[x].num == table[winner - 1].hand[x+1].num)
+                            {
+                                par1 = x;
+                            }
+                            if (table[i].hand[x].num == table[i].hand[x+1].num)
+                            {
+                                par2 = x;
+                            }   
+                        }
+                    }
+                    if (table[i].hand[par2].num > table[winner - 1].hand[par1].num)
+                    {
+                        table[winner - 1].points = 0;
+                        winner = i;
+                        numwin--;
+                    }
+                    if (table[i].hand[par2].num < table[winner - 1].hand[par1].num)
+                    {
+                        table[i].points = 0;
+                        numwin--;
+                    }
+                    if (table[i].hand[par2].num == table[winner - 1].hand[par1].num)
+                    {
+                        int maior1 = 0;
+                        int maior2 = 0;
+                        for (int x = 0; x < 5; x++)
+                        {
+                            if (table[winner - 1].hand[x].num > table[winner - 1].hand[maior1].num && table[winner - 1].hand[x].num != table[winner - 1].hand[par1].num)
+                            {
+                                maior1 = x;
+                            }
+                        }
+                        for (int x = 0; x < 5; x++)
+                        {
+                            if (table[i].hand[x].num > table[i].hand[maior1].num && table[i].hand[x].num != table[i].hand[par2].num)
+                            {
+                                maior2 = x;
+                            }
+                        }
+                        if (table[i].hand[maior2].num > table[winner - 1].hand[maior1].num)
+                        {
+                            table[winner - 1].points = 0;
+                            winner = i;
+                            numwin--;
+                        }
+                        if (table[i].hand[maior2].num < table[winner - 1].hand[maior1].num)
+                        {
+                            table[winner - 1].points = 0;
+                            winner = i;
+                            numwin--;
+                        }
+                    }
+                }
+                break;
+            default:
+                for (int i = 0; i < j; i++)
+                {
+                    if ((table[i].points == table[winner - 1].points) && (table[i].name != table[winner - 1].name))
+                    {
+                        for (int x = 0; x < 5; x++)
+                        {
+                            if (table[i].hand[x].num > table[winner - 1].hand[x].num)
+                            {
+                                table[winner - 1].points = 0;
+                                winner = i;
+                                numwin--;
+                            }
+                            if (table[i].hand[x].num < table[winner - 1].hand[x].num)
+                            {
+                                table[i].points = 0;
+                                numwin--;
+                            }
+                        }
+                    }
+                }
+                break;
+        }
+    }
+
+    if (numwin <= 1)
+    {
+        outFile << 1 << " " << *pote << " " << Classification(table[winner - 1].points);
+        outFile << table[winner - 1].name << endl;
         table[winner-1].money += *pote;
     }
     if (numwin > 1)
     {
         int gain = (*pote/numwin);
-        cout << numwin << " " << gain << " " << Classification(table[winner - 1].points);
-        cout << table[winner - 1].name << endl;
+        outFile << numwin << " " << gain << " " << Classification(table[winner - 1].points);
+        outFile << table[winner - 1].name << endl;
         table[winner-1].money += gain;
         for (int x = 0; x < j; x++)
         {
             if ((table[x].points == table[winner - 1].points) && (table[x].name != table[winner - 1].name))
             {
-                cout << table[x].name;
+                outFile << table[x].name;
                 table[x].money += gain;
             }
         }
     }
 }
+
+
 
 void TableSet(FILE * inFile, Player table[], char name[], int bet, int di, int pin , int *pote, int j)
 {
@@ -185,7 +1012,7 @@ void TableSet(FILE * inFile, Player table[], char name[], int bet, int di, int p
     }
 }
 
-int InvalidRound(Player table[], int pin, int di, int j)
+int InvalidRound(Player table[], int pin, int di, int j, ofstream& outFile)
 {
     for (int x = 0; x < j; x++)
     {
@@ -200,7 +1027,7 @@ int InvalidRound(Player table[], int pin, int di, int j)
         {
             table[x].money = di;
         }
-        cout << 0 << " " << 0 << " " << "I" << endl;
+        outFile << 0 << " " << 0 << " " << "I" << endl;
         return 1;
     }
     return 0;
@@ -229,7 +1056,7 @@ string Classification(int n)
     case OP:
         return "OP";
     default:
-        return "N";
+        return "HC";
     }
 }
 
