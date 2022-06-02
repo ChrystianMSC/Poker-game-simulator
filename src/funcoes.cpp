@@ -1,6 +1,86 @@
 #include "../include/funcoes.h"
 
 
+int InvalidRounds(int pin, int di, int origin, Player table[], Player auxtable[], ofstream& outFile)
+{
+    if (pin > di)
+    {
+        for (int x = 0; x < origin; x++)
+        {
+            for (int z = 0; z < origin; z++)
+            {
+                if (table[x].name == auxtable[z].name && table[x].money != auxtable[z].money)
+                {
+                    table[x].money = auxtable[z].money;
+                }
+            }
+        }
+        outFile << 0 << " " << 0 << " " << "I" << endl;
+        return 1;
+    }
+    return 0;
+}
+
+void ResetHand(Player table[])
+{
+    for (int x = 0; x < SIZET; x++)
+    {
+        table[x].Resethand();
+    }
+}
+
+void InitRound(FILE* inFile, ofstream& outFile, int *j, int *pin, int *di)
+{
+    fscanf(inFile, "%d", j);
+    if (*j < 2 || *j >SIZET)
+    {
+        outFile << "Number of players invalid, please enter a number between 2 and SIZET" << endl;
+        exit(1);
+    }
+
+    fscanf(inFile, "%d", pin);
+    if (*pin < 1 || *pin > *di)
+    {
+        outFile << "Pingo is invalid, pingo most be a number greater than 0 and less than di" << endl;
+        exit(1);
+    }
+}
+
+int InitGame(FILE *inFile, ofstream &outFile, int *n,int *di,int *j,int *pin)
+{
+    int origin = 0;
+    fscanf(inFile, "%d", n);
+    if (*n < 1)
+    {
+        outFile << "Invalid number of rounds" << endl;
+        exit(1);
+    }
+
+    fscanf(inFile, "%d", di);
+    if (*di < 1)
+    {
+        outFile << "Invalid initial money" << endl;
+        exit(1);
+    }
+    fscanf(inFile, "%d", j);
+            
+    if (*j < 2 || *j >SIZET)
+    {
+        outFile << "Number of players invalid, please enter a number between 2 and 8" << endl;
+        exit(1);
+    }
+    
+    origin = *j;
+            
+    fscanf(inFile, "%d", pin);
+    if (*pin < 1 || *pin > *di)
+    {
+        outFile << "Pingo is invalid, pingo most be a number greater than 0 and less than di" << endl;
+        exit(1);
+    }
+    return origin;
+}
+
 void RoundWinner(int origin, Player table[], Player semitable[], int *pote, int j, ofstream& outFile)
 {
     int winner = 0;
@@ -485,8 +565,6 @@ void RoundWinner(int origin, Player table[], Player semitable[], int *pote, int 
     }
 }
 
-
-
 void RoundSet(FILE *inFile, int bet, Player *p, int *pote, int *pin, int di)
 {
     bet = 0;
@@ -514,7 +592,6 @@ void RoundSet(FILE *inFile, int bet, Player *p, int *pote, int *pin, int di)
     bubbleSort(p->hand, sizeof(p->hand)/sizeof(p->hand[0]));
     p->points = Ratehand(p->hand);
 }
-
 
 void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
 {
@@ -965,9 +1042,7 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
     }
 }
 
-
-
-void TableSet(FILE * inFile, Player table[], char name[], int bet, int di, int pin , int *pote, int j)
+void FirstTableSet(FILE * inFile, Player table[], char name[], int bet, int di, int pin , int *pote, int j)
 {
     for (int x = 0; x < j; x++)
     {
@@ -1001,7 +1076,7 @@ void TableSet(FILE * inFile, Player table[], char name[], int bet, int di, int p
     }
 }
 
-int InvalidRound(Player table[], int pin, int di, int j, ofstream& outFile)
+int InvalidFirstRound(Player table[], int pin, int di, int j, ofstream& outFile)
 {
     for (int x = 0; x < j; x++)
     {

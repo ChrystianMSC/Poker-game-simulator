@@ -5,6 +5,7 @@
 #include "player.h"
 #include "funcoes.h"
 
+
 int main() {
 
     int n = 0, di = 0, j = 0, pin = 0, pote = 0, bet = 0, origin = 0;
@@ -16,6 +17,7 @@ int main() {
     
     FILE *inFile;
     ofstream outFile;
+
     outFile.open("saida.txt");
     inFile = fopen("entrada.txt", "r");
 
@@ -29,35 +31,7 @@ int main() {
         table[i] = nullplayer;
     }
     
-    fscanf(inFile, "%d", &n);
-    if (n < 1)
-    {
-        outFile << "Invalid number of rounds" << endl;
-        return 0;
-    }
-
-    fscanf(inFile, "%d", &di);
-    if (di < 1)
-    {
-        outFile << "Invalid initial money" << endl;
-        return 0;
-    }
-    fscanf(inFile, "%d", &j);
-            
-    if (j < 2 || j >SIZET)
-    {
-        outFile << "Number of players invalid, please enter a number between 2 and 8" << endl;
-        return 0;
-    }
-    
-    origin = j;
-            
-    fscanf(inFile, "%d", &pin);
-    if (pin < 1 || pin > di)
-    {
-        outFile << "Pingo is invalid, pingo most be a number greater than 0 and less than di" << endl;
-        return 0;
-    }
+    origin = InitGame(inFile, outFile, &n, &di, &j, &pin);
 
     /* GAME */
 
@@ -66,25 +40,17 @@ int main() {
         /* -------------------------------------------------------------- FIRST ROUND ----------------------------------------------------------------------------- */
         if (i == 0)
         {   
-            if (j < 2 && j >SIZET)
-            {
-                outFile << "Number of players invalid, please enter a number between 2 and 8" << endl;
-                break;
-            }
-            TableSet(inFile, table, name, bet, di, pin, &pote, j);
+            FirstTableSet(inFile, table, name, bet, di, pin, &pote, j);
             
-            int inv = InvalidRound(table, pin, di, j, outFile);
+            int inv = InvalidFirstRound(table, pin, di, j, outFile);
+
             if (inv == 1)
             {
                 continue;
             }
 
             SeeWhoWinF(table, &pote, j, outFile);
-            
-            for (int x = 0; x < SIZET; x++)
-            {
-                table[x].Resethand();
-            }
+            ResetHand(table);
         }
         /* ----------------------------------------------------------- FIRST ROUND - END -------------------------------------------------------------------------- */
  
@@ -104,19 +70,7 @@ int main() {
                 semitable[x] = nullplayer;
             }
 
-            fscanf(inFile, "%d", &j);
-            if (j < 2 || j >SIZET)
-            {
-                cout << "Number of players invalid, please enter a number between 2 and SIZET" << endl;
-                return 0;
-            }
-
-            fscanf(inFile, "%d", &pin);
-            if (pin < 1 || pin > di)
-            {
-                cout << "Pingo is invalid, pingo most be a number greater than 0 and less than di" << endl;
-                return 0;
-            }
+            InitRound(inFile, outFile, &j, &pin, &di);
 
             for (int x = 0; x < origin; x++)
             {
@@ -142,29 +96,14 @@ int main() {
                     }
                 }
             }
-            
-            if (pin > di)
+
+            if (InvalidRounds(pin, di, origin, table, auxtable, outFile))
             {
-                for (int x = 0; x < origin; x++)
-                {
-                    for (int z = 0; z < origin; z++)
-                    {
-                        if (table[x].name == auxtable[z].name && table[x].money != auxtable[z].money)
-                        {
-                            table[x].money = auxtable[z].money;
-                        }
-                    }
-                }
-                outFile << 0 << " " << 0 << " " << "I" << endl;
                 continue;
             }
-
+        
             RoundWinner(origin, table, semitable, &pote, j, outFile);
-
-            for (int x = 0; x < SIZET; x++)
-            {
-                table[x].Resethand();
-            }
+            ResetHand(table);
             
         }
         /* ---------------------------------------------------------------- ROUNDS - END -------------------------------------------------------------------------------- */
