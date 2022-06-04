@@ -2,14 +2,14 @@
 #include <stdio.h>
 #include <fstream>
 #include <regex.h>
-#include "player.h"
-#include "funcoes.h"
+#include "../include/player.h"
+#include "../include/funcoes.h"
 
 
 int main() {
 
     int n = 0, di = 0, j = 0, pin = 0, pote = 0, bet = 0, origin = 0;
-    char name [20];
+    char name [256];
 
     Player nullplayer;
     Player table[SIZET];

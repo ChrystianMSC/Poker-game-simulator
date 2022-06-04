@@ -1,14 +1,25 @@
-3 1000
+5 1000
 5 50
-Giovanni 100 6O 3P 10E 11O 1O
-John 200 3P 4E 3E 13C 13O
-Thiago 100 12O 7P 12C 1O 13C
-Gisele 300 12E 10C 11C 9C 13E
-Wagner 50 5P 12P 5E 2E 1P
+lrbbmqbh 58 5O 1P 0P 6C 7E
+arzowkkyhid 252 0O 0O 11O 3E 10E
+scdxrjm 273 12O 11C 6P 3C 6P
+frxsjybldbef 210 2E 1C 6O 4O 9O
+rcbynecdyg 259 11C 0E 0C 3P 7E
 2 50
-Wagner 200 2P 13E 9E 12C 2O
-Gisele 350 11P 9P 2E 6E 4P
-3 100
-Thiago 250 1O 4P 1E 3O 8O
-Gisele 100 9C 8C 8C 2C 6C
-Giovanni 150 4P 12P 8E 12E 2P
+lrbbmqbh 70 5O 1O 5C 5O 1P
+arzowkkyhid 96 0O 7O 8E 3O 7P
+2 50
+lrbbmqbh 179 5O 0P 3E 9E 3E
+arzowkkyhid 84 0P 2C 4C 2C 10C
+5 50
+lrbbmqbh 237 1O 12O 9C 10O 4E
+arzowkkyhid 285 10O 10P 8P 6E 12O
+scdxrjm 228 10O 0P 2C 10P 8C
+frxsjybldbef 140 3E 2P 1O 1O 3P
+rcbynecdyg 290 3P 9O 5P 6P 10E
+5 50
+lrbbmqbh 219 10P 7O 11E 6O 3P
+arzowkkyhid 155 2C 6C 4C 9O 0C
+scdxrjm 118 8P 1E 7P 1E 4E
+frxsjybldbef 101 6O 3O 10P 8E 9O
+rcbynecdyg 286 5O 6P 5E 2O 3E

@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jun  2 10:20:12 2022
+# Make data base, printed on Sat Jun  4 11:47:18 2022
 
 # Variables
 
@@ -53,7 +53,7 @@ PATH = /home/chrys/.vscode-server/bin/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5/b
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-d6167393-32a3-4d83-b2bc-c67383fa9aa5.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-775d6047-10f4-44c8-8403-37fc5501564d.sock
 # makefile (from 'Makefile', line 7)
 LIB := lib
 # default
@@ -159,10 +159,10 @@ WSL_DISTRO_NAME = Ubuntu
 
 # Directories
 
-# . (device 14, inode 4503599627804108): 12 files, no impossibilities.
+# . (device 14, inode 4503599627804108): 11 files, no impossibilities.
 # src (device 14, inode 2251799814161102): 6 files, no impossibilities.
 
-# 18 files, no impossibilities in 2 directories.
+# 17 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -180,7 +180,7 @@ all: bin/main
 # Not a target:
 src/funcoes.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-01 10:52:32.6924307
+#  Last modified 2022-06-03 19:51:17.1384259
 #  File has been updated.
 #  Successfully updated.
 
@@ -215,7 +215,7 @@ clean:
 # Not a target:
 src/main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-01 11:43:41.3807023
+#  Last modified 2022-06-03 15:33:17.124235
 #  File has been updated.
 #  Successfully updated.
 
@@ -228,7 +228,7 @@ src/card.cpp:
 
 bin/main: src/funcoes.cpp src/player.cpp src/card.cpp src/main.cpp
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-01 11:47:28.4835759
+#  Last modified 2022-06-03 19:51:24.3431941
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 20):
@@ -249,12 +249,12 @@ src/player.cpp:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 28 / storage = 268 B / avg = 9 B
-# current buf: size = 8162 B / used = 268 B / count = 28 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 27 / storage = 254 B / avg = 9 B
+# current buf: size = 8162 B / used = 254 B / count = 27 / avg = 9 B
 
-# strcache performance: lookups = 43 / hit rate = 34%
+# strcache performance: lookups = 42 / hit rate = 35%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=2/43=5%
-# Finished Make data base on Thu Jun  2 10:20:12 2022
+# Load=27/8192=0%, Rehash=0, Collisions=2/42=5%
+# Finished Make data base on Sat Jun  4 11:47:18 2022
 
  

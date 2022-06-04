@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define SIZET 8
+#define SIZET 20
 
 #define RSF 9
 #define SF 8
