@@ -6,5 +6,12 @@
         "string": "cpp",
         "iosfwd": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Enabled"
+    "C_Cpp.errorSquiggles": "Enabled",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/mnt/c/Users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator/bin",
+            "binaryPath": "/mnt/c/Users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator/bin/main",
+            "binaryArgs": []
+        }
+    ]
 }

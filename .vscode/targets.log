@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun  4 11:47:18 2022
+# Make data base, printed on Sat Jun  4 12:54:08 2022
 
 # Variables
 
@@ -18,10 +18,14 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 WSLENV = VSCODE_WSL_EXT_LOCATION/up
 # default
 .SHELLFLAGS := -c
-# makefile (from 'Makefile', line 5)
-SRC := src
+# makefile (from 'Makefile', line 23)
+OBJ := obj/funcoes.o obj/player.o obj/card.o obj/main.o
+# makefile (from 'Makefile', line 22)
+SRC :=  src/funcoes.cpp src/player.cpp src/card.cpp src/main.cpp
 # environment
 VSCODE_LOG_NATIVE = false
+# makefile (from 'Makefile', line 18)
+TARGET := bin/main
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -32,8 +36,6 @@ VSCODE_LOG_NATIVE = false
 CURDIR := /mnt/c/Users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator
 # makefile
 SHELL = /bin/sh
-# makefile (from 'Makefile', line 4)
-BIN := bin
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
 # environment
@@ -50,14 +52,18 @@ VSCODE_CWD = /mnt/c/Users/chrys/AppData/Local/Programs/Microsoft VS Code
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
 PATH = /home/chrys/.vscode-server/bin/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/Eclipse Adoptium/jdk-17.0.3.7-hotspot/bin:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/MinGW/bin:/mnt/c/Program Files/Microsoft SQL Server/130/Tools/Binn/:/mnt/c/Program Files/Git/cmd:/mnt/c/wget:/mnt/c/Program Files/erl-24.2.1/bin:/mnt/c/Program Files (x86)/Elixir/bin:/mnt/c/Users/chrys/.mix/escripts:/mnt/c/Program Files/Microsoft SQL Server/150/Tools/Binn/:/mnt/c/msys64/mingw64/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Users/chrys/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/chrys/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/chrys/AppData/Local/Microsoft/WindowsApps:/mnt/c/wget:/mnt/c/Users/chrys/AppData/Local/Programs/Julia-1.7.1/bin:/mnt/c/Users/chrys/AppData/Local/Programs/Microsoft VS Code/bin
+# makefile (from 'Makefile', line 10)
+SRC_PATH := src
+# makefile (from 'Makefile', line 8)
+BIN_PATH := bin
 # environment
 VSCODE_LOG_STACK = false
 # environment
 VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-775d6047-10f4-44c8-8403-37fc5501564d.sock
-# makefile (from 'Makefile', line 7)
-LIB := lib
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# makefile (from 'Makefile', line 5)
+CCOBJFLAGS :=  -c
 # automatic
 %F = $(notdir $%)
 # environment
@@ -66,6 +72,8 @@ VSCODE_PIPE_LOGGING = true
 PWD = /mnt/c/Users/chrys/OneDrive/Área de Trabalho/TP1.0.1/Poker-game-simulator
 # default
 .LOADED := 
+# makefile (from 'Makefile', line 29)
+CLEAN_LIST := bin/main debug/main obj/funcoes.o obj/player.o obj/card.o obj/main.o debug/funcoes.o debug/player.o debug/card.o debug/main.o
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -87,17 +95,23 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 0
 # makefile (from 'Makefile', line 2)
-CXX_FLAGS := -Wall -Wextra -std=c++17 -ggdb
+CC := g++
+# makefile (from 'Makefile', line 14)
+TARGET_NAME := main
+# makefile (from 'Makefile', line 19)
+TARGET_DEBUG := debug/main
 # default
 MAKE_VERSION := 4.2.1
 # environment
 USER = chrys
 # makefile
-.DEFAULT_GOAL := all
-# makefile (from 'Makefile', line 6)
-INCLUDE := include
+.DEFAULT_GOAL := default
+# makefile (from 'Makefile', line 3)
+CCFLAGS := 
 # environment
 NAME = DESKTOP-IA12ET6
+# makefile (from 'Makefile', line 9)
+OBJ_PATH := obj
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
@@ -124,14 +138,12 @@ VSCODE_HANDLES_SIGPIPE = true
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
-# makefile (from 'Makefile', line 10)
-EXECUTABLE := main
-# makefile (from 'Makefile', line 1)
-CXX := g++
+# makefile (from 'Makefile', line 11)
+DBG_PATH := debug
 # environment
 LC_ALL = C
-# makefile (from 'Makefile', line 9)
-LIBRARIES := 
+# makefile (from 'Makefile', line 4)
+DBGFLAGS := -g
 # environment
 HOSTTYPE = x86_64
 # automatic
@@ -142,16 +154,20 @@ SUFFIXES :=
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # default
 .RECIPEPREFIX := 
+# makefile (from 'Makefile', line 24)
+OBJ_DEBUG := debug/funcoes.o debug/player.o debug/card.o debug/main.o
 # environment
 LANG = C
 # environment
 TERM = xterm-256color
 # environment
 VSCODE_EXTHOST_WILL_SEND_SOCKET = true
+# makefile (from 'Makefile', line 27)
+DISTCLEAN_LIST := obj/funcoes.o obj/player.o obj/card.o obj/main.o debug/funcoes.o debug/player.o debug/card.o debug/main.o
 # environment
 WSL_DISTRO_NAME = Ubuntu
 # variable set hash-table stats:
-# Load=70/1024=7%, Rehash=0, Collisions=5/100=5%
+# Load=78/1024=8%, Rehash=0, Collisions=7/134=5%
 
 # Pattern-specific Variable Values
 
@@ -159,37 +175,146 @@ WSL_DISTRO_NAME = Ubuntu
 
 # Directories
 
-# . (device 14, inode 4503599627804108): 11 files, no impossibilities.
+# . (device 14, inode 4503599627804108): 13 files, no impossibilities.
 # src (device 14, inode 2251799814161102): 6 files, no impossibilities.
 
-# 17 files, no impossibilities in 2 directories.
+# 19 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
-# No implicit rules.
+obj/%.o: src/%.c*
+#  recipe to execute (from 'Makefile', line 41):
+	$(CC) $(CCOBJFLAGS) -o $@ $<
+
+debug/%.o: src/%.c*
+#  recipe to execute (from 'Makefile', line 44):
+	$(CC) $(CCOBJFLAGS) $(DBGFLAGS) -o $@ $<
+
+# 2 implicit rules, 0 (0.0%) terminal.
 
 # Files
 
+debug/main: debug/funcoes.o debug/player.o debug/card.o debug/main.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 47):
+	$(CC) $(CCFLAGS) $(DBGFLAGS) $(OBJ_DEBUG) -o $@
+
+# Not a target:
+debug/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+debug/card.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 all: bin/main
+#  Phony target (prerequisite of .PHONY).
 #  Command line target.
-#  Implicit rule search has been done.
+#  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+
+.PHONY: makedir all debug clean distclean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+distclean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 67):
+	@echo CLEAN $(CLEAN_LIST)
+	@rm -f $(DISTCLEAN_LIST)
+
+# Not a target:
+debug/player.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+obj/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/funcoes.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-03 19:51:17.1384259
+#  Last modified 2022-06-04 12:31:53.560273
 #  File has been updated.
 #  Successfully updated.
+
+obj/card.o: src/card.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'card'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := obj/card.o
+# automatic
+# % := 
+# automatic
+# * := card
+# automatic
+# + := src/card.cpp
+# automatic
+# | := 
+# automatic
+# < := src/card.cpp
+# automatic
+# ^ := src/card.cpp
+# automatic
+# ? := src/card.cpp
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/15=7%
+#  recipe to execute (from 'Makefile', line 41):
+	$(CC) $(CCOBJFLAGS) -o $@ $<
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-29 13:37:11.946952
+#  Last modified 2022-06-04 12:52:55.1137197
 #  File has been updated.
 #  Successfully updated.
+
+debug: debug/main
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+default: makedir all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+obj/player.o: src/player.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'player'
+#  Last modified 2022-06-04 12:53:32.3391188
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 41):
+	$(CC) $(CCOBJFLAGS) -o $@ $<
+
+# Not a target:
+debug/funcoes.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
@@ -197,27 +322,22 @@ Makefile:
 #  Modification time never checked.
 #  File has not been updated.
 
-run: clean all
+makedir:
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 16):
-	clear
-	./$(BIN)/$(EXECUTABLE)
+#  recipe to execute (from 'Makefile', line 52):
+	@mkdir -p $(BIN_PATH) $(OBJ_PATH) $(DBG_PATH)
 
 clean:
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 23):
-	-rm $(BIN)/*
-
-# Not a target:
-src/main.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-03 15:33:17.124235
-#  File has been updated.
-#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 62):
+	@echo CLEAN $(CLEAN_LIST)
+	@rm -f $(CLEAN_LIST)
 
 # Not a target:
 src/card.cpp:
@@ -226,13 +346,24 @@ src/card.cpp:
 #  File has been updated.
 #  Successfully updated.
 
-bin/main: src/funcoes.cpp src/player.cpp src/card.cpp src/main.cpp
-#  Implicit rule search has not been done.
-#  Last modified 2022-06-03 19:51:24.3431941
+obj/funcoes.o: src/funcoes.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'funcoes'
+#  Last modified 2022-06-04 12:53:31.3384932
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 20):
-	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
+#  recipe to execute (from 'Makefile', line 41):
+	$(CC) $(CCOBJFLAGS) -o $@ $<
+
+bin/main: obj/funcoes.o obj/player.o obj/card.o obj/main.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-06-04 12:36:43.0067274
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+#  recipe to execute (from 'Makefile', line 38):
+	$(CC) $(CCFLAGS) -o $@ $(OBJ)
 
 # Not a target:
 src/player.cpp:
@@ -242,19 +373,19 @@ src/player.cpp:
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=11/1024=1%, Rehash=0, Collisions=0/31=0%
+# Load=23/1024=2%, Rehash=0, Collisions=0/68=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 27 / storage = 254 B / avg = 9 B
-# current buf: size = 8162 B / used = 254 B / count = 27 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 46 / storage = 444 B / avg = 9 B
+# current buf: size = 8162 B / used = 444 B / count = 46 / avg = 9 B
 
-# strcache performance: lookups = 42 / hit rate = 35%
+# strcache performance: lookups = 85 / hit rate = 45%
 # hash-table stats:
-# Load=27/8192=0%, Rehash=0, Collisions=2/42=5%
-# Finished Make data base on Sat Jun  4 11:47:18 2022
+# Load=46/8192=1%, Rehash=0, Collisions=2/85=2%
+# Finished Make data base on Sat Jun  4 12:54:08 2022
 
  

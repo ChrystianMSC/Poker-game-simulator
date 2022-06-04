@@ -988,10 +988,6 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
     {
         for (int z = 0; z < j; z++)
         {
-            if (x == z)
-            {
-                continue;
-            }
             if (table[x].points > table[z].points)
             {
                 winner = x;
@@ -1007,7 +1003,7 @@ void SeeWhoWinF(Player table[], int *pote, int j, ofstream& outFile)
         }
     }
 
-    if (numwin <= 1)
+    if (numwin == 1)
     {
         outFile << 1 << " " << *pote << " " << Classification(table[winner].points);
         outFile << table[winner].name << endl;
